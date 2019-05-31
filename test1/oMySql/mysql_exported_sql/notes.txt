@@ -1,0 +1,20 @@
+phpMyAdmin:
+ - Username:(root)
+ - Password:(rootpass
+
+ 
+
+Method to restore database:
+1. using import laste exported-sql data.
+
+phpMyAdmin | Home 
+ import: exported_Jiaguwen_all_table_20140510.sql
+
+or 
+ 
+2. copy raw database data 
+copy Jiaguwen folder in var_lib_mysql into /var/lib/mysql/
+(Hieroglyphics database was changed into Hieroglyphics table in Jiaguwen-database.
+ 
+
+

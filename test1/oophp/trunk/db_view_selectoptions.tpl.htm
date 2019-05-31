@@ -1,0 +1,132 @@
+<optgroup label="Jiaguwen " style="color:#000000; background-color:#ffff99">
+<option>SELECT * FROM Jiaguwen                                           ;;;count=6186</option>
+<option>SELECT * FROM Jiaguwen LIMIT 0,10</option>
+<option>SELECT * FROM Jiaguwen LIMIT 0,500</option>
+<option>SELECT * FROM Jiaguwen LIMIT 0,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 1000,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 2000,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 3000,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 4000,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 5000,1000</option>
+<option>SELECT * FROM Jiaguwen LIMIT 6000,1000</option>
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '%62548,%' ORDER BY jink</option>
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '%' ORDER BY jink          ;;;count=6155 (everything not null)</option>
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '%,' ORDER BY jink         ;;;count=5196 (one or more)  --(1) </option>
+
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '_____,' ORDER BY jink     ;;;count= 351 (single) </option>
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '_____,_%' ORDER BY jink   ;;;count=4837 (Two Or more) </option>
+<option>SELECT * FROM Jiaguwen WHERE jink LIKE '_____,%' ORDER BY jink    ;;;count=5188 (one or more)   --(2) ??</option>
+
+<option>SELECT * FROM Jiaguwen WHERE jink='' OR jink IS NULL              ;;;count= 990</option>
+<option>SELECT * FROM Jiaguwen WHERE jink IS NULL                         ;;;count=  31</option>
+<option>SELECT * FROM Jiaguwen WHERE jink = ''                            ;;;count= 959 </option>
+
+
+
+<option>SELECT * FROM Jiaguwen WHERE jtoh LIKE '%,%' ORDER BY jtoh , jink DESC</option>
+<option>SELECT * FROM Jiaguwen WHERE jtoh LIKE '%,%' ORDER BY jtoh , jink ASC</option>
+<option>SELECT * FROM Jiaguwen WHERE jmn LIKE '%,%'</option>
+<option>SELECT * FROM Jiaguwen WHERE jmn <>""</option>
+<option>SELECT * FROM Jiaguwen WHERE jmn IS NULL</option>
+<option>SELECT * FROM Jiaguwen WHERE jmn IS NOT NULL </option>
+<option>SELECT * FROM Jiaguwen WHERE L IS NULL</option>
+<option>SELECT * FROM Jiaguwen WHERE L!='4' AND xa!='x'</option>
+<option>SELECT * FROM Jiaguwen WHERE  xa='x'</option>
+<option>SELECT * FROM Jiaguwen WHERE jink='' AND L!='1' AND L!='5' AND xa!='x' </option>
+<option>SELECT * FROM Jiaguwen WHERE L IS NOT NULL ORDER BY L</option>
+<option>SELECT jid FROM Jiaguwen</option>
+<option>SELECT jid, zid FROM Jiaguwen</option>
+<option>SELECT jid,zid, freq  FROM Jiaguwen GROUP BY zid ORDER BY freq</option>
+<option>SELECT idx, jid, jink , pyn, eng, descr, L ,xa  FROM Jiaguwen WHERE jink=''</option>
+<option>SELECT idx, jid, jink , pyn, eng, descr, L ,xa  FROM Jiaguwen WHERE jink IS NULL</option>
+<option>SELECT idx, jid, jink , pyn, eng, descr, L ,xa  FROM Jiaguwen WHERE jink LIKE '_____,'</option>
+<option>SELECT idx, jid, jink , pyn, eng, descr, L ,xa  FROM Jiaguwen WHERE jink LIKE '_____,_____,%'</option>
+<option>SELECT idx, jid, jink , pyn, eng, descr, L ,xa  FROM Jiaguwen LIMIT 0,10</option>
+<option>SELECT DISTINCT jink FROM Jiaguwen WHERE jink LIKE '_____,'</option>
+</optgroup>
+
+
+
+<optgroup label="Compare Table/View Jiaguwen " style="color:#000000; background-color:#ffff33">
+<option>CREATE OR REPLACE VIEW view_1 AS SELECT * FROM Jiaguwen WHERE jink LIKE '%,' ORDER BY jink         ;;;count=5196 (one or more)  --(1) </option>
+<option>CREATE OR REPLACE VIEW view_2 AS SELECT * FROM Jiaguwen WHERE jink LIKE '_____,%' ORDER BY jink    ;;;count=5188 (one or more)   --(2) ??</option>
+<option>SELECT view_1.*  FROM view_1 LEFT JOIN view_2 ON view_1.idx=view_2.idx WHERE view_2.idx IS NULL</option>
+<option>SELECT * FROM view_1 WHERE view_1.idx NOT IN(SELECT view_2.idx FROM view_2 WHERE view_1.idx=view_2.idx) </option>
+<option>SELECT * FROM view_2 WHERE view_2.idx NOT IN(SELECT view_2.idx FROM view_2 WHERE view_1.idx=view_2.idx) </option>
+
+<option></option>
+<option>;to generate: ../oopy/mdb/Jiaguwen_Analyser.py</option>
+<option>SELECT * FROM vtbl_lead_and_members</option>
+<option>SELECT vtbl_lead_and_members.jid FROM vtbl_lead_and_members</option>
+<option>SELECT * FROM vtbl_component_and_children </option>
+<option>SELECT vtbl_lead_and_members.jid, vtbl_lead_and_members.jink, vtbl_component_and_children.jink(jink2) FROM vtbl_lead_and_members FULL JOIN vtbl_component_and_children ON  vtbl_component_and_children.jid= vtbl_lead_and_members.jid</option>
+<option>SELECT vtbl_lead_and_members.jid, vtbl_lead_and_members.jink, vtbl_component_and_children.jink FROM vtbl_lead_and_members FULL JOIN vtbl_component_and_children ON  vtbl_component_and_children.jid= vtbl_lead_and_members.jid</option>
+
+<option></option>
+<option>SELECT vtbl_lead_and_members.jid, vtbl_lead_and_members.jink, vtbl_component_and_children.jink AS jink2 FROM vtbl_lead_and_members , vtbl_component_and_children WHERE  vtbl_component_and_children.jid = vtbl_lead_and_members.jid ORDER BY vtbl_lead_and_members.jid</option>
+
+<option></option>
+<option>SELECT vtbl_lead_and_members.jid, vtbl_lead_and_members.jink, vtbl_component_and_children.jink AS jink2 FROM vtbl_lead_and_members , vtbl_component_and_children WHERE  vtbl_component_and_children.jid <> vtbl_lead_and_members.jid</option>
+<option></option>
+<option></option>
+<option></option>
+</optgroup>
+
+
+
+
+<optgroup label="Hieroglyphics " style="color:#000000; background-color:#ffff99">
+<option>SELECT * FROM Hieroglyphics LIMIT 0,10</option>
+<option>SELECT * FROM Hieroglyphics LIMIT 0,100000</option>
+</optgroup>
+
+
+
+<optgroup label="Mixed Jiaguwen and Hieroglyphics " style="color:#000000; background-color:#ffff99">
+<option>SELECT 'Jiaguwen.jid', 'Hieroglyphics.hid' FROM Jiaguwen, Hieroglyphics WHERE Jiaguwen.idx != ''   LIMIT 0,100</option>
+<option>SELECT 'Jiaguwen.jid' , 'Hieroglyphics.hid'  FROM Jiaguwen, Hieroglyphics WHERE Jiaguwen.idx <10   LIMIT 0,10</option>
+<option>SELECT 'Jiaguwen.jid' jid, 'Hieroglyphics.hid' hid FROM Jiaguwen, Hieroglyphics WHERE Jiaguwen.idx <10   LIMIT 0,10</option>
+</optgroup>
+
+
+<optgroup label="PictureToday " style="color:#000000; background-color:#ffff99">
+<option>SELECT *  FROM PictureToday    LIMIT 0,10</option>
+<option>SELECT *  FROM PictureToday_jid2pic_    LIMIT 0,10</option>
+</optgroup>
+
+
+<optgroup label="Zid2pinyin  " style="color:#000000; background-color:#ffff99">
+<option>SELECT *  FROM Zid2pinyin     LIMIT 0,10</option>
+<option>SELECT jid, Jiaguwen.zid, Zid2pinyin.pinyins FROM Jiaguwen , Zid2pinyin where Jiaguwen.zid=Zid2pinyin.zid</option>
+<option>SELECT Jiaguwen.idx, Jiaguwen.jid, Jiaguwen.zid, Jiaguwen.zid1, Jiaguwen.jink, Zid2pinyin.pinyins FROM Jiaguwen   LEFT JOIN Zid2pinyin ON Jiaguwen.zid=Zid2pinyin.zid</option>
+<option>SELECT Jiaguwen.*, Zid2pinyin.pinyins FROM Jiaguwen LEFT JOIN Zid2pinyin  ON Jiaguwen.zid=Zid2pinyin.zid</option>
+
+</optgroup>
+
+
+
+<optgroup label="VIEW (../oopy/create_view.py) " style="color:#000000; background-color:#ffff33">
+<option> CREATE OR REPLACE VIEW view_Jiaguwen_Roots AS SELECT * FROM Jiaguwen WHERE jink is NULL OR jink='' ;;; root</option>
+<option>SELECT *  FROM view_Jiaguwen_Roots ;;; root tot=990   </option>
+<option> </option>
+<option>CREATE OR REPLACE VIEW view_Jiaguwen_Polymorphy AS SELECT * FROM Jiaguwen WHERE jink LIKE '_____,' ORDER BY jink ;;; similarities </option>
+<option>SELECT *  FROM view_Jiaguwen_Polymorphy  ORDER BY jink ;;; count=351 </option>
+<option>SELECT DISTINCT jink FROM view_Jiaguwen_Polymorphy WHERE jink LIKE '_____%' ORDER BY jink ;;;count=124 </option>
+
+<option> </option>
+<option>CREATE OR REPLACE VIEW view_Jiaguwen_Composite AS SELECT * FROM Jiaguwen WHERE jink LIKE '_____,_%'    ;;; Composite words </option>
+<option>SELECT *  FROM view_Jiaguwen_Composite  ORDER BY jink ;;; count=4837 </option>
+
+
+</optgroup>
+
+
+
+<optgroup label="temp-transition-table " style="color:#000000; background-color:#ffff77">
+<option>SELECT *  FROM ttt    LIMIT 0,10</option>
+<option>SELECT DISTINCT src FROM ttt ORDER BY idx DESC LIMIT 10</option>
+</optgroup>
+
+<optgroup label="UPDATE SAMPLE" style="color:#000000; background-color:#ffff99">
+<option>UPDATE Jiaguwen SET hink='xyz' WHERE hink=abc</option>
+</optgroup>

@@ -1,0 +1,226 @@
+﻿.overDivStyle {
+	visibility: hidden;
+	z-index: 1;
+	position: absolute;
+}
+* {
+	/*  no padding setting here as it upset overlib */
+    border-width: 0px;
+	margin: 0px;
+	border: 0px;
+	border-spacing: 0px;
+}
+body {
+	/*  padding setting here as it upsets overlib if it is in *   */
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #fffae1;
+	font-size: 1em;
+}
+td {
+    /* no padding here, it upsets overlib */
+	margin: 0px;
+	border-spacing: 0px;
+}
+h2 {
+	font-size: small;
+	font-weight: bold;
+	margin-bottom: 2pt;
+}
+.notesCell {
+	font-size: small;
+	text-align: left;
+	width: 70%;
+}
+.imageSpanRight {
+	margin-left: 4%;
+	float: right;
+	text-align: center;
+	font-size: small;
+	font-style: italic;
+	line-height: 150%;
+	font-weight: bold;
+	padding-left: 20px;
+}
+.ciaPara {
+	text-align: center;
+	font-size: small;
+	font-weight: bold;
+}
+.copyrightPara {
+	text-align: center;
+	font-size: small;
+	font-weight: normal;
+}
+h1 {
+	font-size: 42pt;
+	font-weight: bold;
+}
+.mapStyle {
+	padding: 0px;
+	border-style: 0;
+	margin: 0px;
+	border-width: 0px;
+	vertical-align: middle;
+}
+.topTitleCell {
+	width: 45%;
+	text-align: center;
+}
+.topLinkCell {
+	text-align: center;
+	width: 55%;
+	font-size: small;
+	font-weight: bold;
+}
+.topMarginCell {
+	width: 30%;
+	border-spacing: 0;
+	text-align: center;
+	font-size: small;
+	font-weight: bold;
+}
+.notesMarginCell {
+	width: 12%;
+}
+table {
+	border-spacing: 0px;
+	border-style: none;
+	border-width: 0px;
+}
+a {
+	font-size: small;
+	font-weight: bold;
+}
+.anchorLarger {
+	font-size: medium;
+	font-weight: bold;
+	text-align: center;
+}
+.newtopLinkCell {
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+	width: 30%;
+}
+.halfLine {
+	line-height: 50%;
+}
+.fivePixelBreak {
+	line-height: 5px;
+}
+.imgBase {
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	border-style: 0;
+	margin: 0px;
+	border-width: 0px;
+	vertical-align: middle;
+}
+.imgOver {
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	padding: 0px;
+	border-style: 0;
+	margin: 0px;
+	border-width: 0px;
+	vertical-align: middle;
+	visibility: hidden;
+}
+.mapButton1 {
+	padding: 0px;
+	margin: 0px;
+	border: 4px outset #0066CC;
+	font-weight: bold;
+	background-color: #FFF9BF;
+	position: relative;
+	height: auto;
+	font-size: 11pt;
+	color: #0000FF;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	width: auto;
+}
+.adCell {
+	border-width: 0px;
+	width: 160px;
+	text-align: center;
+	border-style: none;
+	vertical-align: top;
+	background-color: #fffacd;
+	border-spacing: 0px;
+}
+.imageCell {
+	text-align: center;
+	vertical-align: top;
+	padding: 0px;
+	border-style: none;
+	margin: 0px;
+	border-width: 0px;
+	border-spacing: 0px;
+}
+.linksCell {
+	position: relative;
+	text-align: center;
+	width: 160px;
+	right: 0%;
+	vertical-align: top;
+}
+.noBreak {
+	white-space: nowrap;
+}
+.mapButton1b {
+	padding: 0px;
+	margin: 0px;
+	border: 4px outset #0066CC;
+	font-weight: bold;
+	background-color: #FFFF99;
+	position: relative;
+	height: auto;
+	font-size: 11pt;
+	color: #0000FF;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	width: auto;
+	vertical-align: middle;
+}
+.mapButtonText1b {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	line-height: 200%;
+	word-spacing: 150%;
+	letter-spacing: 150%;
+	text-align: center;
+}
+.notesTable {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	border-spacing: 0px;
+}
+.buttonCell {
+	width: 33%;
+}
+.anchorLargerer {
+	font-size: large;
+	font-weight: bold;
+}
+.imageTopCell {
+	border-style: none;
+	border-width: 0px;
+	text-align: center;
+	width: 33%;
+	vertical-align: middle;
+	border-spacing: 0px;
+}
+.paraFirstText {
+	text-align: left;
+}
+.textPara {
+	font-size: medium;
+	text-align: justify;
+	line-height: 130%;
+}

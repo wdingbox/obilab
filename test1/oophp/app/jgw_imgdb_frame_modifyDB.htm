@@ -1,0 +1,191 @@
+<!DOCtype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+                <title> </title>
+
+          
+                <script type="text/javascript" src="../../_js/jquery.js"></script>
+                <script type="text/javascript" src="../../_js/jquery.cookie.js"></script>
+
+                <!-- Users -->
+                </head>
+<style>
+body{
+   padding : 0;
+   margine : 0;
+}
+.menuItem
+{
+   width  : *;
+   height : 18px;
+   float: left;
+   padding : 0;
+   margine : 0;
+}
+div{
+padding:0;
+margine:0;
+}
+.myword
+{
+   float: left;
+   width : 120px;
+}
+.myctr
+{
+   float: left;
+   width : 60px;
+}
+</style>                   
+<script type="text/javascript">
+var oid=57345;
+$(document).ready(function(){   
+
+function show(){
+   $.post("../uti/svc/test.php", 
+                     {   
+                         jid:  oid
+                     },
+                     function(data, status){
+                        $("#textoid").html(data);
+                        $("#imgid").attr("src","../../odb/tbi/img/jgif/"+oid+".gif");
+                     },
+                      "datastring"
+   );// post
+}
+$("#next").click(function(){
+   oid += parseInt( $("#dlta").val() );
+   show();			  
+});
+$("#prev").click(function(){
+   oid -= parseInt( $("#dlta").val() );
+   show();			  
+});
+
+$("#Update").click(function(){
+   //alert(0);			  
+   $.post("../uti/svc/Jiaguwen_update.php", 
+                     {   
+                         jid:  $("#textoid").text(),
+                         link1: $("#textoid1").text(),
+                         link2: $("#textoid2").text(),
+                         link3: $("#textoid3").text(),
+                         link4: $("#textoid4").text(),
+                         link5: $("#textoid5").text(),
+                         link6: $("#textoid6").text(),
+                         link7: $("#textoid7").text(),
+                         link8: $("#textoid8").text(),
+                         link9: $("#textoid9").text(),
+                         link10: $("#textoid10").text()
+                      },
+                      function(data, status){
+                        var ifind = data.search("ret=1");
+                        if( data.search("ret=1")>0 ){
+                           $("body").css('background-color', '#11ff11');
+                        }
+                        else if( data.search("ret=0")>0 ){
+                           $("body").css('background-color', '#ffff99');
+                        }
+                        else{
+                           $("body").css('background-color', '#ff6666');
+                        }
+                        $("#msg").text(data + " || ifind=" + ifind);
+                     },
+                      "datastring"
+   );// post
+});
+      
+   $("img.update").click(function(){
+      $(this).attr("src","0");
+      var idz = $(this).attr("id");
+      
+      idz = idz.substr(4,2);//alert(idz); //4:pos, 2:length
+      $('#textoid'+idz).text("");
+      
+      $('#textoid').attr("upIndx",idz);
+      
+      ////clear the text bg colors.
+      $("a.update").css('background-color', 'white');
+   });  
+   
+   
+   $("#imgid").click(function(){
+      $.post("../uti/svc/Jiaguwen_read.php", 
+                      {   
+                         jid:  $("#textoid").text()
+                      },
+                      function(data, status){
+                        if(data=="err") {
+                           $("body").css('background-color', '#ff0011');
+                           return;
+                        }
+                        $("body").css('background-color', '#11ff11');
+                        
+                        $("#msg").text(data);
+                        var arr = data.split(",");
+                         
+                        for(var i=0;i<10;i++) {
+                              var k=i+1;
+                              $("#textoid"+k).text( "" );
+                              $("#textoid"+k).text( arr[i] );
+                              $("#root"+k).attr("src","../../odb/tbi/img/jgif/"+arr[i]+".gif");
+                        }
+                           
+                     },
+                      "datastring"
+   );// post
+
+   });  
+   
+   $("#textoid").click(function(){
+      var imgfile = jQuery.cookie('jid');
+      //alert( imgfile );
+      $("#imgid").attr("src",imgfile);
+      var arr = imgfile.split("/");
+      $(this).text( arr[ arr.length-1].split(".")[0] );
+      
+      if( $(this).css('background-color') != "#9999ff" ){
+         $(this).css('background-color', '#9999ff');
+      }
+      else{
+         $(this).css('background-color', '#ff9999');
+      }
+   });
+         
+});//$(document).ready(function(){                                              
+ </script>
+
+</head>     
+                
+<body  bgcolor="#ddee22">
+<div class="myword">
+<div class="myctr">
+<img id='imgid' src="../../odb/tbi/img/jgif/57344.gif" alt="load links">
+</img></div>
+<div class="myctr">
+
+<a id='textoid' upIndx='1'  alt="load cookie">cookie</a><br><br>
+<button id='Update'>Save</button>
+</div></div>
+
+<div>
+<img id='root1' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid1' class='update' ></a>
+<img id='root2' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid2' class='update' ></a>
+<img id='root3' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid3' class='update' ></a>
+<img id='root4' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid4' class='update' ></a>
+<img id='root5' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid5' class='update' ></a>
+<img id='root6' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid6' class='update' ></a>
+
+<img id='root7' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid7' class='update' ></a>
+<img id='root8' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid8' class='update' ></a>
+<img id='root9' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid9' class='update' ></a>
+<img id='root10' class='update' src="../../odb/tbi/img/jgif/57344.gif"></img><a id='textoid10' class='update' ></a>
+
+<button id='prev'>&lt;</button><button id='next'>&gt;</button><input id='dlta' size='2' value=1 />
+<br>
+</div>
+<a id='msg' ></a><br>
+
+</body>
+
+</html>

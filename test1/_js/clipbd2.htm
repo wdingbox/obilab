@@ -1,0 +1,87 @@
+
+<HTML>
+<HEAD>
+<TITLE>setData and getData Methods</TITLE>
+
+<STYLE type="text/css"> 
+
+</STYLE>
+<SCRIPT type="text/javascript"> 
+var bResult;
+// Select the text to be cut. Trailing spaces in a text
+// selection in cut events cause the Cut shortcut menu item to
+// remain disabled.
+function fnLoad() {
+    var r = document.body.createTextRange();
+    r.findText(oSource.innerText);
+    r.select();
+}
+// Enable the Cut shortcut menu item over the DIV. Cut is disabled by default.
+// Once Cut is enabled, Internet Explorer automatically copies the data to the
+// clipboard and removes the selected text from the document.
+function fnBeforeCut() {
+    event.returnValue = false;
+}
+//Assign data in text format to the window.clipboardData object.
+//Display the result (Boolean) from the setData method in the input box below.
+function fnCut(){
+	//event.returnValue = false;
+	bResult = window.clipboardData.setData("Text",oSource.innerText);
+	oSource.innerText = "";
+	tText.innerText += bResult;
+}
+function fnCut2(){
+	//event.returnValue = false;
+	bResult = window.clipboardData.setData("Text",oSource.value);
+	
+	tText.innerText += bResult+"-"+oSource.value;
+   oSource.innerText = "ok";
+}
+// Enable the Paste shortcut menu item over the DIV. Paste is disabled by default.
+function fnBeforePaste() {
+    event.returnValue = false;
+}
+// Cancel the returnValue in onpaste for the text input, which
+// has a default behavior.
+function fnPaste() {
+    event.returnValue = false;
+	oTarget.innerText = window.clipboardData.getData("Text");
+}
+ 
+</SCRIPT>
+<!-- SAMPLE_STYLE_START -->
+<LINK rel="stylesheet" type="text/css" href="samplesSDKIE4.css">
+<!-- SAMPLE_STYLE_END -->
+</HEAD>
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+ 
+<BODY onload="fnLoad()">
+<DIV CLASS="body">
+<BR><BR>
+<P>This example demonstrates how to use the <B>setData</B> and <B>getData</B> methods with the
+   <B>clipboardData</B> object to perform a cut or paste operation through the shortcut menu.
+</P>
+ 
+<B>Steps</B>
+<OL>
+<LI>If it isn't already selected, select the text in the upper text box ("Select and cut..."). Avoid selecting extra spaces.</LI> 
+<LI>Click the selection with the right mouse button and then choose <b>Cut</b> from the shortcut menu, or choose <b>Cut</b> from the <b>Edit</b> menu. The <B>setData</B> method will return a value of <I>true</I> or <I>false</I> in the input box at the bottom of the page.</LI>
+<LI>Select the text "Paste the text here." Click the selection with the right mouse button and then choose <b>Paste</b> from the shortcut menu, or choose <b>Paste</b> from the <b>Edit</b> menu.</LI>
+</OL>
+ <input CLASS="clsSourceCy" ID="oSourceCpy" onmouseover="fnBeforeCut()" onbeforecopy="fnBeforeCut()" onclick="fnCut2()">cpy text.</input>
+<input CLASS="clsSource" ID="oSource" onbeforecut="fnBeforeCut()" oncut="fnCut()">Select and cut this text.</input>
+<DIV CLASS="clsTarget" ID="oTarget" onbeforepaste="fnBeforePaste()" onpaste="fnPaste()">Paste the text here.</DIV>
+<BR>
+<SPAN CLASS="clsData">setData Result: </SPAN><INPUT CLASS="clsText" ID="tText" TYPE="text" READONLY VALUE="" SIZE="6" TABINDEX="-1">
+ 
+ 
+<!-- START_PAGE_FOOTER -->
+<BR><BR><BR>
+<p class="viewsource">[Right-click and choose View Source from the shortcut menu.] </p>
+<A CLASS="copyright" HREF="http://www.microsoft.com/isapi/gomscom.asp?TARGET=/info/cpyright.htm">&copy; 2007 Microsoft Corporation. All rights reserved. Terms of use.</A>
+<!-- END_PAGE_FOOTER -->
+</DIV>
+</BODY>
+</HTML>

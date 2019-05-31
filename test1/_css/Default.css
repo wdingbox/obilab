@@ -1,0 +1,81 @@
+
+/*VoiceTone*/
+a.vt
+{
+}
+a.hz 
+{
+	table-layout:fixed;
+	width : 20;
+	height :2;
+	text-align:center;
+
+
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+}
+
+/*XuHao*/
+a.xu 
+{   
+	table-layout:fixed;
+	width : 20;
+	height : 2;
+	text-align:right;
+	margin-right:0.1cm;
+	margin-left:0.05cm;
+	
+}
+
+
+
+
+body
+{ 
+	font-family:arial,sans-serif;
+	margin-top : 3;
+}
+
+.tstopmenubar
+{
+		border-top:1px solid #dddd00;
+		position  :absolute;
+		top       :25px;
+		width     :100%;
+		right	  :10px;
+		 
+	
+	
+}
+
+.tsmenuTopRight
+{
+		font-size:12px;
+		padding-top:0px ;
+		padding-right:2px;
+		text-align:right; 
+}
+		
+.tsmenuTopLeft
+{
+		font-size    : 12px;
+		padding-top  : 0px ;
+		padding-left : 2px;
+}
+		
+@media all
+{
+		.tsmenuTopLeft
+		{
+			float:left
+		}
+}
+	
+		
+	
+	
+	
+	
+	
+	
+	

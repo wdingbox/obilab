@@ -1,0 +1,27 @@
+wd@rootroot
+
+
+mysql -p
+password: rootpass
+
+
+
+
+===========================================
+mysql -u root -p
+rootpass
+1.mysql> CREATE DATABASE ''databasename''; 
+2. 
+3.mysql> GRANT ALL PRIVILEGES ON ''databasename''.* TO "''username''"@"''hostname''" IDENTIFIED BY "''password''";
+4. 
+5.mysql> FLUSH PRIVILEGES;
+6. 
+7.mysql> EXIT
+============================================
+show databases;
+use  dbname;
+show columns from tabname;
+============================================
+insert into tbname values (,,,);
+select * from tabname;
+============================================

@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {"id": "aa", "group": 1},
+    {"id": "bb", "group": 2},
+    {"id": "cc", "group": 3},
+    {"id": "dd", "group": 4},
+    {"id": "ff", "group": 4},
+    {"id": "55", "group": 4},
+    {"id": "66", "group": 6},
+    {"id": "77", "group": 7},
+    {"id": "ee", "group": 7}
+  ],
+  "links": [
+    {"source": "bb", "target": "aa", "value": 1},
+    {"source": "bb", "target": "aa", "value": 1},
+    {"source": "ee", "target": "aa", "value": 8},
+    {"source": "cc", "target": "aa", "value": 8},
+    {"source": "cc", "target": "dd", "value": 0.1}
+  ]
+}

@@ -1,0 +1,107 @@
+#outHolder, #outSizer{
+	position: fixed;
+	top:205px;
+	right: 10px;
+	
+}
+#outHolder{
+
+}
+
+#out{
+	background-color: #ffff99;
+	font-family: "Courier";
+	white-space: nowrap;
+}
+#outSizerxx{
+	position: fixed;
+	vertical-align: top;
+	top:205px;
+	right: 10px;
+}
+.outSizeMax{
+	width:800px;
+	height:520px;
+}
+.outSizeMin{
+	width:300px;
+	height:60px;
+}
+#menu{
+	position: fixed;
+	top: 0px;
+	right:10px;
+	background-color: #ffffff;
+	font-family: "Courier";
+}
+img{
+ max-height: 45px;
+ min-height: 45px;
+}
+.hilimg{
+	border: 1px solid #ff0000;
+}
+.bigimg{
+  max-height: 200px;
+}		
+.selectedimg{
+  
+  max-height: 80px;
+  text-decoration: line-through;
+  background-color: #ff0000;
+}
+.ftypimgSelect{
+	background-color: #777777;
+}
+.edi{
+	border:1px solid #ff0000;
+	margin-left: 5px;
+	width: 20px;
+}
+
+.mi{
+	font-size: 60%;
+	float:left;
+}
+
+#imgSelHolder{
+	position: fixed;
+	right: 10px;
+	top:270px;
+	background-color: #eeffee;
+	max-width: 400px;
+
+}
+.editable, .scroll2view{
+	background-color: yellow;
+}
+.edichanged{
+	background-color: green;
+}
+
+.multiplechecks{
+	overflow-y: scroll;
+	height: 200px;
+}
+
+
+
+table {
+    border-collapse: collapse;
+}
+table, td, th {
+    border: 1px solid black;
+}
+thead {
+	background-color:#7777ff;
+}
+
+
+
+
+.ColrYellow{
+	background-color:yellow;
+}
+.ColrRed{
+	background-color:red;
+}

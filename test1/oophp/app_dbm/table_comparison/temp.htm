@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript"  src="./jquery-2.1.1.min.js"></script>   
+<script type="text/javascript"  src="./jqTableComparison.js"></script> 
+<script>
+ function allowDrop(ev) {
+     ev.preventDefault();
+ }
+
+ function drag(ev) {
+     ev.dataTransfer.setData("text/html", ev.target.id);
+     //console.log("drag");
+ }
+
+ function drop(ev) {
+     ev.preventDefault();
+     //console.log("drop");
+     var data = ev.dataTransfer.getData("text/html");
+     ev.target.appendChild(document.getElementById(data));
+ }
+ var dragObj=null;
+ $(document).ready(function(){
+			$("#drag1").mouseover(function(idx){
+                dragObj=$(this);
+					var sql = $(this).attr("src");
+					//console.log(sql);
+								  
+			});
+              $("#oksubmit").submit(function(){
+								   var sql = $("#sql").val();
+                           if ( sql.toLowerCase().search("update ") >=0 ){
+                              return confirm("Update?\n"+sql);
+                           }
+                           return true;
+								  });
+});//$(document).ready(function(){  
+</script>
+<style>
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+</head>
+<body>
+
+<button id="runComp">Compare Tables</button>
+<hr/>
+ <a id="cout">out</a>
+ 
+ 
+ 
+ <table border="1" id="RootsFreqList">
+			<caption>
+				RootsFreqList</caption>
+			<tbody>
+				<tr>
+					<td>
+						idx</td>
+					<td>
+						Roots</td>
+					<td>
+						Freq</td>
+					<td>
+						Tot</td>
+				</tr>
+				<tr>
+					<td>
+						0</td>
+					<td>
+						<a class="m">57344</a><br />
+						<img class="m" src="http://24.96.232.130:7780/lamp/wroot/odb/tbi/img/jgif/57344.gif" /></td>
+					<td>
+						634</td>
+					<td>
+						634</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp;</td>
+					<td>
+						<a class="m">57348</a><br />
+						<img class="m" src="http://24.96.232.130:7780/lamp/wroot/odb/tbi/img/jgif/57348.gif" /></td>
+					<td>
+						&nbsp;</td>
+					<td>
+						&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			total_RFval=1717,td:eq(7)<br />
+			&nbsp;</p>
+		<table border="1" id="merged">
+			<caption>
+				Merged List</caption>
+			<tbody>
+				<tr>
+					<td>
+						1</td>
+					<td>
+						<a class="m">57348</a><br />
+						<img class="m" src="http://24.96.232.130:7780/lamp/wroot/odb/tbi/img/jgif/57348.gif" /><br />
+						<a href="http://24.96.232.130:7780/lamp/wroot/oophp/app_dbm/db_view.php?sql=SELECT+*+FROM+Jiaguwen+WHERE+jink+LIKE+%27%2557344%25%27+ORDER+BY+jink%3B+man%2Cwoman%3A57869%2Cslave%3A57720%2C+king%3A57571%2Cson%3A62629&amp;sss=...#62549" id="57348">(merge to:)</a><br />
+						<br />
+						&nbsp;</td>
+					<td>
+						1</td>
+					<td>
+						635</td>
+				</tr>
+				<tr>
+					<td>
+						37</td>
+					<td>
+						<a class="m">62567</a><br />
+						<img class="m" src="http://24.96.232.130:7780/lamp/wroot/odb/tbi/img/jgif/62567.gif" /><br />
+						&nbsp;</td>
+					<td>
+						1</td>
+					<td>
+						1284</td>
+				</tr>
+				<tr>
+					<td>
+						106</td>
+					<td>
+						<a class="m">62162</a><br />
+						<img class="m" src="http://24.96.232.130:7780/lamp/wroot/odb/tbi/img/jgif/62162.gif" /></td>
+					<td>
+						2</td>
+					<td>
+						1650</td>
+				</tr>
+				<tr>
+					<td>
+						123</td>
+					<td>
+						1</td>
+					<td>
+						1716</td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>

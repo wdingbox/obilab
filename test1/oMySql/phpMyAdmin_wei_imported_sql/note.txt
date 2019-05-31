@@ -1,0 +1,6 @@
+mySql
+create a database name: Jiaguwen
+then import Jiaguwen.sql file.
+
+
+Hieroglyphics.sql is optional resources. it is already merged into Jiaguwen.sql.

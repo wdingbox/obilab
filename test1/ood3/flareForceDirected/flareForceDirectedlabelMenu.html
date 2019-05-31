@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+    <TITLE>ootbi</TITLE>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8"></META>
+	<META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>
+    <link rel="stylesheet" href="../css/jquery.contextmenu.css">
+    <link rel="stylesheet" type="text/css" href="../css/OpMenu.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <script src="../js/jquery.contextmenu.js"></script>
+<script src="../js/D3Uti.js"></script>
+<script src="../js/OpMenu.js"></script>
+
+<script>
+$(document).ready(function(){
+
+});
+</script>
+<style>
+body{
+overflow:scroll;
+}
+
+.node circle {
+  cursor: pointer;
+  stroke: #3182bd;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+  pointer-events: none;
+  text-anchor: left;
+}
+
+path.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+
+
+
+#licensing {
+  fill: #9ecae1;
+}
+
+.licensing {
+  stroke: #ff0000;
+  stroke-width: 1.5px;
+}
+
+
+
+#debug{
+  position: fixed;
+  left:0px;
+  top:0px;
+}
+.fixedNodes{
+  border-style: solid;
+  border-color: #0000ff #0000ff;
+  border-width: 1px;
+}
+.floatNodes{
+  border-style: solid;
+  border-color: #cccccc #cccccc;
+  border-width: 1px;
+}
+</style>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#d3svg").addClass("floatNodes");
+
+ $("#op").change(function(){
+    var val=$(this).val();
+    D3Uti.popupWindow(val);
+ });
+});//doc
+function op(){
+    var val=$("#op").val();   
+    var url=window.location.href.split("?")[0]+"?f="+val;
+    console.log(val);
+    window.open(url);
+}
+var jsontreefilename="../dat/flareForceDirectedlabel_logo.json";
+var jsontreefilename="../dat/d3Tree_demo_logo.json";
+var idxfn=window.location.href.indexOf("?f=");
+if(idxfn>=0){
+    jsontreefilename=window.location.href.substring(3+idxfn);
+}
+console.log("jsontreefilename="+jsontreefilename);
+</script>
+<body>
+<div id="OpMenu">
+<select id="selop">
+<option></option>
+<option value="UpdateGraphic">Refresh</option>
+<option value="fixedNodeToggle">fixedNodes</option>
+<option value="Save2File">Save2File</option>
+
+<option></option>
+
+<option>../dat/d3Tree_demo_logo.json</option>
+<option>../dat/d3Tree_demo_picto.json</option>
+<option>../dat/d3Tree_logo.json</option>
+<option>../dat/d3Tree_picto.json</option>
+<option>../dat/d3Tree_picto_living.json</option>
+<option>../dat/d3Tree_picto_noneliving.json</option>
+
+<option></option>
+
+<option value="ViewP2pArr">ViewData:P2pArr</option>
+<option value="ViewD3Links">ViewGraphic:links</option>
+<option value="ViewD3Nodes">ViewGraphic:nodes</option>
+
+<option></option>
+
+<option value="ViewTreeNodeList">View:TreeNodeList</option>
+<option value="View_sout_jid_jnm">View:sout_jid_jnm</option>
+<option value="ViewTreeJson">View:TreeJson</option>
+<option value="origLoadData">View:origLoadData</option>
+</select><br/>
+
+</div>
+<div id="d3svg"></div>
+<hr/>
+<div id='dout'>+</div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 100,widthMax=0,
+    height = 160,heightMax=0,
+    root,nodes,links,ood3tree , origLoadData,
+    d3tree;
+
+var force = d3.layout.force()
+    .linkDistance(40)
+    .charge(-920)
+    .gravity(.7)
+    .size([width, height])
+    .on("tick", tick);
+
+var svg = d3.select("#d3svg").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+.call(d3.behavior.zoom().on("zoom", function () {
+        svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+      }));
+  
+var link = svg.selectAll(".link"),
+    node = svg.selectAll(".node");  
+   
+//add arrow
+// Per-type markers, as they don't inherit styles.
+svg.append("defs").selectAll("marker")
+    .data(["suit", "licensing", "resolved"])
+  .enter().append("marker")
+    .attr("id", function(d) { return d; })
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 19)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+  .append("path")
+    .attr("d", "M0,-5L10,0L0,5");
+    
+
+
+d3.json(jsontreefilename, function(error, json) {
+  if (error) throw error;
+  origLoadData=JSON.stringify(json);
+  ood3tree=json;
+  d3tree=new D3Tree(json);
+  root = json;
+  update();
+});
+
+function update() {
+    nodes = flatten(root),
+    links = d3.layout.tree().links(nodes);
+
+    width=700+2.5*nodes.length;
+    height=560+2.5*nodes.length;
+    if(width>widthMax)widthMax=width;
+    if(height>heightMax)heightMax=height;
+
+    document.getElementById("d3svg").style.width = widthMax+"px";
+    document.getElementById("d3svg").style.height = heightMax+"px";
+
+    svg
+    .attr("width", widthMax)
+    .attr("height", heightMax);
+
+  // Restart the force layout.
+  force
+      .nodes(nodes)
+      .links(links)
+      .size([widthMax, heightMax])
+      .start();
+
+  // Update links.
+  link = link.data(links, function(d) { return d.target.id; });
+
+  link.exit().remove();
+
+  //use path instead of line for arc
+  link.enter().insert("path", ".node")
+      .attr("class", function(d) { return "link " + d.type; })
+      .style("marker-end",  "url(#licensing)") // Modified line ;
+
+  // Update nodes.
+  node = node.data(nodes, function(d) { return d.id; });
+
+  node.exit().remove();
+
+  var nodeEnter = node.enter().append("g")
+      .attr("class", "node")
+      .on("click", click)
+      .call(force.drag);
+
+  nodeEnter.append("circle")
+      .attr("r", function(d) { return 10;})
+      .style("fill", "#ffffff");
+
+
+
+  nodeEnter.append("text")
+      .attr("x", function(d) { return 11; })
+      .attr("y", ".31em")
+      .text(function(d) { return d.addr; });
+
+
+  nodeEnter.append("image")
+      .attr("class", "image")
+      .attr("title", D3Uti.ImgFile)
+      .attr("xlink:href", D3Uti.ImgFile) 
+      .attr("x", "-7px")
+      .attr("y", "-7px")
+      .attr("width", "14px")
+      .attr("height", "14px")
+      .on("contextmenu", ImgPopupMenu.oncontextMenu)  
+      .on("click",       ImgPopupMenu.onclickTargetImg)
+      .on("mouseover",on_mouseover);
+      
+      
+  node.select("circle")
+      .style("stroke", color)
+   
+  ImgPopupMenu.Init('image');
+  //$(".image")[0].scrollIntoView();   
+}
+
+function tick() {
+   link.attr("d", linkArc);
+   link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+
+  //update img after changed.
+  node.select("image").attr("xlink:href", function(d){
+     //console.log("img=",d.img);
+     return D3Uti.ImgFile(d);
+  });
+
+  node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+
+}
+
+function linkArc(d) {
+  var dx = d.target.x - d.source.x,
+      dy = d.target.y - d.source.y,
+      dr = Math.sqrt(dx * dx + dy * dy);
+      
+      //ajustment for arrow end point.
+      var arc=Math.atan2(dy, dx);
+      var radius=5;
+      var dltx=radius*Math.cos(arc);
+      var dlty=radius*Math.sin(arc);
+      
+  return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + (d.target.x-dltx) + "," + (d.target.y-dlty);
+}
+function color(d) {
+  if(d.circle_color) {
+    return d.circle_color;
+  }
+  return d._children ? "#0000ff" // collapsed package 3182bd
+      : (d.children&&d.children.length>0) ? "#777777" // expanded package
+      : "#c6dbef"; // leaf node
+}
+
+
+function on_mouseover(nod){
+        var info="addr:"+nod.addr+" ,img:"+nod.img;
+        $("#info").html(info);
+
+        d3.select(this).attr("xlink:href", D3Uti.ImgFile(nod));
+        console.log(info);
+}
+
+// Toggle children on click.
+function click(d) {
+    console.log("click");
+  //if (d3.event.defaultPrevented) return; // ignore drag
+
+  if(ImgPopupMenu.targetOpMode){
+     ImgPopupMenu.targetOpMode=null;
+    //return;
+  }
+  //d.fixed=!d.fixed;
+
+  if ( d.children && d.children.length>0 ) {
+    d._children = d.children;
+    d.children = null;
+    update();
+  } else if( d._children && d._children.length>0){
+    d.children = d._children;
+    d._children = null;
+    update();
+  }
+  
+}
+function update_graphic(){
+  update();
+};
+// Returns a list of all nodes under the root.
+function flatten(root) {
+  var nodes = [], i = 0;
+
+  function recurse(node) {
+    if (node.children) node.children.forEach(recurse);
+    if (!node.id) node.id = ++i;
+    nodes.push(node);
+  }
+
+  recurse(root);
+  return nodes;
+}
+function fixedNodes(root,bFixed) {
+  function recurse(node) {
+    if (node.children) node.children.forEach(recurse);
+    node.fixed=bFixed;//!node.fixed;
+  }
+
+  if(bFixed){
+    $("#d3svg").removeClass("floatNodes").addClass("fixedNodes");
+  }
+  else{
+    $("#d3svg").removeClass("fixedNodes").addClass("floatNodes");
+  }
+
+  recurse(root);
+}
+force.on('end', function() {
+  console.log("force end.");
+  // fixedNodes(root,true);
+  return;
+
+    // When this function executes, the force layout
+    // calculations have concluded. The layout will
+    // have set various properties in our nodes and
+    // links objects that we can use to position them
+    // within the SVG container.
+
+    // First let's reposition the nodes. As the force
+    // layout runs it updates the `x` and `y` properties
+    // that define where the node should be centered.
+    // To move the node, we set the appropriate SVG
+    // attributes to their new values. We also have to
+    // give the node a non-zero radius so that it's visible
+    // in the container.
+
+    node.attr('r', width/25)
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+
+    // We also need to update positions of the links.
+    // For those elements, the force layout sets the
+    // `source` and `target` properties, specifying
+    // `x` and `y` values in each case.
+
+    link.attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8"></META>
+	<META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>  
+  <script
+      type="text/javascript" 
+      src="http://d3js.org/d3.v3.min.js">
+  </script>
+  <script
+      type="text/javascript"
+      src="http://d3js.org/queue.v1.min.js"> 
+  </script>
+</head>
+<body>
+<script type="text/javascript">
+ 
+/* Set the diagrams Height & Width */
+    var h = 8000, w = 9500;
+
+/* Establish/instantiate an SVG container object */
+    var svg = d3.select("body")
+                    .append("svg")
+                    .attr("height",h)
+                    .attr("width",w)
+                    .append("g")
+                    .attr("transform","translate(50,50)");
+
+    
+    var tree=d3.layout.tree()
+    .size([h*8/10,w*8/10]);
+    
+    d3.json("../dat/d3Tree_logo.json",function(data){
+        if(!data)  alert("err");
+        var nodes=tree.nodes(data);
+        var links=tree.links(nodes);
+        
+        svg.selectAll(".link")
+           .data(links)
+           .enter()
+           .append("path")
+           .attr("class","link")
+           .attr("fill","none")
+           .attr("stroke","#00adad")
+           .attr("stroke-width",1)
+           .attr("d",d3.svg.diagonal().projection(function(d){
+                return [d.y,d.x];
+           }));         
+           
+                 
+        var node=svg.selectAll(".node")
+        .data(nodes)
+        .enter()
+        .append("g")
+         .attr("class","node")
+         .attr("transform",function(d){return "translate("+d.y+","+d.x+")";});
+         
+  
+        node.append("circle")
+         .attr("r",17)
+         .attr("stroke","blue")
+         .attr("stroke-width",1)
+         .attr("fill","#ffffff");
+         
+         node.append("image")
+          .attr("xlink:href", myImg) 
+          .attr("x", "-12px")
+          .attr("y", "-12px")
+          .attr("width", "24px")
+          .attr("height", "24px");
+         
+         
+         node.append("text")
+         .text(function(d){return d.addr;})
+         .attr("x","20")
+         .attr("y","-1");
+         
+    });
+    
+            
+function myImg(nod){
+   if(undefined == nod.addr) {
+      nod.img="00000";
+   }
+   var img=getImgPathFile(nod.img);
+   return img;
+};  
+function getImgPathFile(imgName){
+    var img="../../../../odb/tbi/img/jgif/"+imgName+".gif";
+    return img;
+};    
+</script>
+</body>
+</html>

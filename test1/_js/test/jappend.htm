@@ -1,0 +1,77 @@
+<!DOCtype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+                <title> </title>
+
+                <script type="text/javascript" src="../jquery.js"></script>
+                <script type="text/javascript" src="../jquery.cookie.js"></script>
+               
+
+                <!-- Users -->
+</head>
+ <style type="text/css">
+</style>                
+<script type="text/javascript">
+
+$(document).ready(function(){   
+   $("img.roots").click(function() {
+      $(this).parent().find("img[src='']").each(function(){
+         $(this).attr("src","../../odb/hiero/ccer-h/A13A.gif").attr("class","aa");
+      });
+      return;
+   
+   
+                          
+                              var htm_img="<img class='aa' src='--'/><a>ooo</a>";
+                              $(this).parent().clone().appendTo("a:last");
+                              $(this).parent().find("a:last").append(htm_img);
+                              //$(this).parent().append("<img class='aa' />").attr("class","aa");
+                              var t = $(this).parent().attr("class");
+                              alert( "Pranet="+t );
+                              
+                              htm_img="<img class=\"aa\" src=\"--\" /><a>ppppp</a>";
+                              $(this).parent().append(htm_img);
+                              
+                              htm_img="<img class='aa' src='--'/><a>tttoooo</a>";
+                              //$(this).parent.appen((htm_img);
+                              //$(this).parent().append(htm_img);
+                              
+   });
+                           
+   $("img.aa").click(function() {
+                              var htm_img="<img class='aa' src='--'/><a>ooo</a>";
+                              alert("img aa="+htm_img);
+                              //$(this).parent().append(htm_img);
+                              
+   });
+   $("img").click(function(){
+      alert( "tag img class=" + $(this).attr("class") );
+      });
+   
+   $("a").click(function(){alert("a tag");});
+}); ////jQuery
+ </script>
+
+</head>     
+                
+<body bgcolor="#eeddee">		
+
+
+<div class="my_div">
+<img class="roots" id="root" alt="fff" title="aaa" src="../../odb/hiero/ccer-h/A13A.gif"></img><a>aa</a>
+<img class='aa' src="a"></img><a>aa</a>
+<img/><a/><img/><a/><img/><a/><img/><a/>
+<img class='aa' src=""></img><a>aa</a>
+<img class='aa' src=""></img><a>aa</a>
+</div>
+<div>
+<img class="roots" alt="fff" title="aaa" src="../../odb/hiero/ccer-h/A13A.gif"></img><a>aa</a>
+<img class='aa' src="a"></img><a>aa</a>
+<img class='aa' src="a"></img><a>aa</a>
+<img class='aa' src=""></img><a>aa</a>
+<img class='aa' src=""></img><a>aa</a>
+</div>
+
+</body>
+
+</html>

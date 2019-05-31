@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<title>Jida2Dat</title>
+		<link href="" rel="stylesheet" type="text/css" />
+		<script src="../_js/jquery.js"></script>
+
+
+
+
+
+
+		<link  href="css/Jiaguwen6kTable.css" rel="stylesheet">
+		<script src="./js/Jiaguwen6kTable_Uti.js"></script>
+		<script src="./jsdat/Jiaguwen6kTable_DatArry.js"></script>
+		<script src="./jsdat/JiaguwenTableJid6186_JidaArry.js"></script>
+
+		<script src="./js/Jiaguwen6kTable3.js"></script>
+		<script src="./js/Jiaguwen6kTable2.js"></script>
+		<script src="./js/Jiaguwen6kTable.js"></script>
+
+
+<style type="text/css">
+#out{
+	position: fixed;
+	top:160px;
+	right: 10px;
+
+	background-color: #ffff99;
+}
+.outSizeMax{
+	width:800px;
+	height:520px;
+}
+#menu{
+	position: fixed;
+	top: 0px;
+	right:10px;
+	background-color: #ffffff;
+}
+img{
+ max-height: 25px;
+ min-height: 25px;
+}
+.hilimg{
+	border: 1px solid #ff0000;
+}
+.bigimg{
+  max-height: 200px;
+}		
+.selectedimg{
+  
+  max-height: 50px;
+  text-decoration: line-through;
+  background-color: #ff0000;
+}
+.ftypimgSelect{
+	background-color: #777777;
+}
+.edi{
+	border:1px solid #ff0000;
+	margin-left: 5px;
+	width: 20px;
+}
+thead {background-color:#eeeeee;}
+
+.mi{
+	font-size: 60%;
+	float:left;
+}
+
+#imgHolder{
+	position: fixed;
+	right: 250px;
+
+}
+.ColrYellow{
+	background-color:yellow;
+}
+.ColrRed{
+	background-color:red;
+}
+tbody > tr:nth-child(4n+1) {background-color: #cccccc;}
+tbody > tr:nth-child(4n+2) {background-color: #cccccc;}
+tbody > tr:nth-child(4n+3) {background-color: #eeeeee;}
+tbody > tr:nth-child(4n+4) {background-color: #eeeeee;}
+</style>
+
+</head>
+
+<script>
+
+$(document).ready(function(){ 
+	JiaguwenTable.Init();
+
+	JgwUti.varify_two_data_in_general(JiaguwenTable.DatArry, JiaguwenTable.JidaArry);
+	//var st=gen_table_str(JiaguwenTable.DatArry);
+	//return this.AnyArry_CompareTo_Stdrry(this.DatArry, this.JidaArry);
+	var ret=JgwUti.AnyArry_CompareTo_Stdrry(JiaguwenTable.DatArry, JiaguwenTable.JidaArry);
+	var st=gen_table_str(ret.changedRowArry);
+	show2Table("changedRowsArry",st);
+	colorizeChangedCell(ret.changedColArry);
+
+});////////////////////////////////////////////////////////////////////
+
+
+</script>
+	<body>
+	<p>Compare dat with HEAD.</p>
+<div id="base"></div>
+	</body>
+</html>

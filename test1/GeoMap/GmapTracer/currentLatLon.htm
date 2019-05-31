@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <META http-equiv="Content-Type" content="text/html; charset=utf8"></META>
+	<META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>
+
+<body>
+
+<p id='fyi'>Click the button to get your coordinates.</p>
+
+<button onclick="tryIt()">Try It</button><button onclick="Continue()">Continue</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+var fyi = document.getElementById("fyi");
+var idinterval=null;
+function Continue(){
+    if(null!=idinterval){return alert("already start");}
+    var delay=prompt("setInterval (s)","30");
+    if(false===delay) return;
+    fyi.innerHTML="setInterval(s):"+delay;
+    idinterval=setInterval(getLocation,parseInt(delay)*1000);
+}
+function tryIt() {
+    fyi.innerHTML=".";
+    clearInterval(idinterval);
+    idinterval=null;
+    getLocation();
+}
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var t=new Date(position.timestamp);
+    //t.setSeconds( position.timestamp/1000 );
+    var formatted = t.toJSON();
+    var ret = "["+ formatted+", "+position.timestamp + ", " + position.coords.latitude + 
+    ", " + position.coords.longitude + ", +/-" + position.coords.accuracy;	
+    console.log( ret );
+    x.innerHTML +=ret+"],<br>";
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+
+</body>
+</html>

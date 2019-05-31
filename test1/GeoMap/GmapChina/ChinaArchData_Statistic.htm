@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="en-us" http-equiv="Content-Language" />
+		<title>ChinaArchMap</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+        
+        <script src="./RiverChangLatLng.js"></script>
+        <script src="./RiverChang_Jinsha_Tongtian_LatLng.js"></script>
+        <script src="./RiverChang_Minjian_Songhe_LatLng.js"></script>
+        <script src="./RiverYellowLatLng.js"></script>
+        
+        <script src="./ChinaArchData00.js"></script>
+        <script src="./ChinaArchData10.js"></script>
+        <script src="./ChinaArchDataUti.js"></script>
+        
+        <script src="./ChinaArchMapUti.js"></script>
+        <style>
+        
+        #tables_container{
+            height:300px;
+            overlap:scroll;
+        }
+        
+        .tdclked{
+           background-color:#cccccc;
+        }
+        table:nth-child(1){
+            background-color:#ffeedd;
+        }
+        table:nth-child(2){
+            background-color:#eeeeff;
+        }
+        
+        
+        
+.overlayDiv {
+	/*  set to width of image  */
+	left: 0px;
+	width: 754px;
+	height:659px; 
+	padding: 0px;
+	border-style: 0;
+	margin: 0px auto 0px auto;
+	border-width: 0px;
+	position: absolute;
+
+	/*cursor: crosshair;*/
+	
+}
+        </style>
+        
+        <script>
+var archinfo00=new ChinaArchDataUti(ChinaArchData00);
+var archinfo01=new ChinaArchDataUti(ChinaArchData10);
+        
+ 
+
+var marker;
+var infowindow ;
+var map;
+var LatLngArrIndx=-1;
+function initialize(latlng, labeltxt) {
+  var centerLatLng = ChinaArchMapUti.GenCenterLatLng(latlng);
+
+  var mapProp = {
+    center:centerLatLng,
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.TERRAIN 
+  };
+  map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  
+  google.maps.event.addListener(map, 'click', function(event) {
+    $("#posit").text(event.latLng.toString());
+    infowindow.close();
+    marker.setMap(null);
+  });
+  
+  
+  //center marker
+  marker=new google.maps.Marker({
+	position:centerLatLng,
+  });
+  marker.setMap(map);
+  infowindow = new google.maps.InfoWindow({
+	  content:labeltxt
+	  });
+  infowindow.open(map,marker);
+  
+
+  ChinaArchMapUti.setMyRiverOnMap(map, RiverChangLatLng);
+  ChinaArchMapUti.setMyRiverOnMap(map, ReiverYellowLatLng);
+  ChinaArchMapUti.setMyRiverOnMap(map, RiverChang_Jinsha_Tongtian_LatLng);
+  ChinaArchMapUti.setMyRiverOnMap(map, RiverChang_Minjian_Songhe_LatLng);
+  
+  ChinaArchMapUti.setJerusalemLatLineOnMap(map);
+  
+
+  //ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map,archinfo00.LatLngArr);
+  ChinaArchMapUti.setLatLngArrAsCirclesOnMap(map, archinfo00.LatLngArr, 0, {radius:15000,strokeColor:"#33aaaa",fillColor:"#ff0000"});
+  
+  //ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map, archinfo01.LatLngArr,{strokeColor:"#1234ff"});
+  //ChinaArchMapUti.setLatLngArrAsCirclesOnMap(map, archinfo01.LatLngArr,1, {radius:25000});
+  
+}
+function Init(){
+  initialize(null,"default center");
+}
+//google.maps.event.addDomListener(window, 'load', Init);
+
+
+
+
+  
+  
+  $(document).ready(function(){ 
+  
+    $("#Next1").click(function(){
+        LatLngArrIndx+=1;
+        if( LatLngArrIndx >= archinfo00.LatLngArr.length){
+            LatLngArrIndx=0;
+            alert("restart");
+            };
+        var slabel=""+LatLngArrIndx+":"+archinfo00.NameArr[LatLngArrIndx];
+        ChinaArchMapUti.UpdateMarkerPos(archinfo00.LatLngArr[LatLngArrIndx],slabel);
+        
+        ChinaArchMapUti.setLatLngArrAsPolylineOnMap2(map,archinfo00.LatLngArr, LatLngArrIndx);
+    });
+    $("#Next2").click(function(){
+        ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map, archinfo01.LatLngArr,{strokeColor:"#1234ff"});
+        ChinaArchMapUti.setLatLngArrAsCirclesOnMap(map, archinfo01.LatLngArr, 1, {radius:25000});
+        LatLngArrIndx+=1;
+        if( LatLngArrIndx >= archinfo01.LatLngArr.length){
+            LatLngArrIndx=0;
+            alert("restart");
+            };
+        var slabel=""+LatLngArrIndx+":"+archinfo01.NameArr[LatLngArrIndx];
+        ChinaArchMapUti.UpdateMarkerPos(archinfo01.LatLngArr[LatLngArrIndx],slabel);
+    });
+    
+    $("#tables_container").append(archinfo00.GetTable());  
+    $("#tables_container").append(archinfo00.GetFreqTable({scale:200}));
+    
+    $("#tables_container").append(archinfo01.GetTable());  
+    $("#tables_container").append(archinfo01.GetFreqTable({scale:10}));
+  });
+  
+  
+
+  //table events.
+  function clk_LatLng(_this){
+    var latlng=$(_this).text();
+    var idx=$(_this).prev().prev().text();
+    var Name=""+idx+":"+$(_this).next().text();
+    ChinaArchMapUti.UpdateMarkerPos(latlng,Name);
+    $(_this).addClass("tdclked");
+  }  
+  
+  function clk_Date(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+
+  function clk_Name(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+  function clk_Locate(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+  function clk_Descrp(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+        </script>
+	</head>
+	<body>
+<div class="overlayDiv">
+<svg id='mysvg' class='overlayDiv'>
+  <polygon pointsx="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
+   <polygon pointsx="0,10 250,190 0,0" style="fill:blue;stroke:purple;stroke-width:1" />
+  Sorry, your browser does not support inline SVG.
+</svg>		
+</div>	
+<div id='tables_container'>
+</div>
+
+	</body>
+</html>

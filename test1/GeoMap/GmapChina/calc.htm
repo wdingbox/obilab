@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="en-us" http-equiv="Content-Language" />
+		<title>ChinaArchMap</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+        
+        <script>
+        $(document).ready(function(){
+            $("#ret1").click(function(){
+                var v1=$("#v1").val();
+                var ma=v1.match(/([0-9]+)[^0-9]([0-9]+)[^0-9](([0-9]+).([0-9]+))/);
+                console.log(ma);
+                var v2=parseFloat(ma[1]);
+                v2+=parseFloat(ma[2]/60);
+                v2+=parseFloat(ma[3]/3600);
+                $("#v2").val(v2);
+            });
+            
+            $("#ret2").click(function(){
+                var v1=$("#v2").val();
+                var vDegree=parseInt(v1);
+                var v2= 60*(parseFloat(v1)-parseFloat(vDegree));
+                var vMinute=parseInt(v2);
+                var v3=parseFloat(v2)-parseFloat(vMinute);
+                var vSeconds=v3*60;
+                
+                var degree=vDegree.toString()+"-"+vMinute+"-"+vSeconds;
+                
+                $("#v1").val(degree);
+
+            });
+
+        
+        
+        });
+        
+        
+        </script>
+        
+        
+	</head>
+	<body>
+
+    <table border='1'><caption>Degree Digital Converter</caption>
+    <tr><td>Degree</td><td></td><td>Float</td></tr>
+    <tr>
+    <td><input id='v1' value="40°26′45.8"></input></td> 
+    <td><button id='ret1'>-&gt;</button><br/><button id='ret2'><-</button></td> 
+    <td><input id='v2'></input></td>
+    </tr>
+
+    </table>
+
+
+	</body>
+</html>

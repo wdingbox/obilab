@@ -1,0 +1,10 @@
+in ubuntu, copy these two directory
+ - Hierotlyphics
+ - Jiaguwen
+
+into:
+
+/var/lib/mysql/
+
+change owner to mysql:mysql
+change mode to 660

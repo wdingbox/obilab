@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="en-us" http-equiv="Content-Language" />
+		<title>ChinaArchMap</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HGG3RFYiypcB7CBHmhMxX426vQBUKx8&callback=initMap" type="text/javascript"></script>
+        
+        <script src="./WorldHeritage/WorldHeritage_en.json"></script>
+        <script src="./WorldHeritage/WorldHeritageUti.js"></script>
+        
+        <script src="./RiverChangLatLng.js"></script>
+        <script src="./RiverChang_Jinsha_Tongtian_LatLng.js"></script>
+        <script src="./RiverChang_Minjian_Songhe_LatLng.js"></script>
+        <script src="./RiverYellowLatLng.js"></script>
+        <script src="./ChinaBorder.js"></script>
+        
+        <script src="./BronzeScriptureDistributions.js"></script>
+
+        <script src="./ChinaArchData00.js"></script>
+        <script src="./ChinaArchData02.js"></script>
+        
+        <script src="./ChinaArchData10.js"></script>
+        <script src="./ChinaArchData30.js"></script>
+        <script src="./AncientArchSiteWorld.js"></script>
+        
+        <script src="./ChinaArchDataUti.js"></script>
+        
+        <script src="./ChinaArchMapUti.js"></script>
+        <style>
+        
+        .text_container{
+            height:600px;
+            width:100%;
+            background-color:#eeeeee;
+            border-style: solid;
+            border-width: 2px;
+            overflow:scroll;
+        }
+        
+        .tdclked{
+           background-color:#cccccc;
+        }
+        table:nth-child(1){
+            background-color:#ffeedd;
+        }
+        table:nth-child(2){
+            background-color:#eeeeff;
+        }
+        
+        .clickedcircle2td{
+            background-color:#00cccc;
+        }
+        </style>
+        
+        <script>
+var archinfo00=new ChinaArchDataUti([],"");
+//archinfo00.AddMore(ChinaArchData02);
+
+//var archinfo01=new ChinaArchDataUti(ChinaArchData10,"archinfo01");
+
+//var bronzeScriptureDistr=new ChinaArchDataUti(BronzeScriptureDistributions,"bronzeScriptureDistr");
+        
+ archinfo00.GenTimeDistanceArrForLatLng("33.0,111.0");
+
+var marker;
+var infowindow ;
+var map;
+var LatLngArrIndx=-1;
+function initialize(latlng, labeltxt) {
+  var centerLatLng = ChinaArchMapUti.GenCenterLatLng(latlng);
+
+  var mapType='';
+  if( confirm("Set Default Map Type TERRAIN, otherwise Empty") ){
+    mapType=google.maps.MapTypeId.TERRAIN;
+  }
+  
+  var mapProp = {
+    center:centerLatLng,
+    zoom:5,
+    mapTypeId:mapType,//google.maps.MapTypeId.TERRAIN |ROADMAP|SATELLITE
+  };
+  map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  
+  google.maps.event.addListener(map, 'click', function(event) {
+    $("#posit").text(event.latLng.toString());
+    infowindow.close();
+    marker.setMap(null);
+  });
+  
+  
+  //center marker
+  marker=new google.maps.Marker({
+	position:centerLatLng,
+  });
+  marker.setMap(map);
+  infowindow = new google.maps.InfoWindow({
+	  content:labeltxt
+	  });
+  infowindow.open(map,marker);
+  
+  var myCenter = new google.maps.Circle({
+            center:centerLatLng,
+            radius:50000,
+            strokeColor:"#FF00FF",
+            strokeOpacity:0.2,
+            strokeWeight:10,
+            fillColor:"#FF0000",
+            fillOpacity:0.2
+          });
+          myCenter.setMap(map);
+  
+
+  ChinaArchMapUti.setMyPolylineOnMap(map, RiverChangLatLng, "#0000ff");
+  ChinaArchMapUti.setMyPolylineOnMap(map, ReiverYellowLatLng, "#0000ff");
+  ChinaArchMapUti.setMyPolylineOnMap(map, RiverChang_Jinsha_Tongtian_LatLng, "#0000ff");
+  ChinaArchMapUti.setMyPolylineOnMap(map, RiverChang_Minjian_Songhe_LatLng, "#0000ff");
+  ChinaArchMapUti.setMyPolylineOnMap(map, ChinaBorder, "#000000");
+  
+  ChinaArchMapUti.setJerusalemLatLineOnMap(map);
+  
+
+  //ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map,archinfo00.LatLngArr);
+  //ChinaArchMapUti.setLatLngArrAsCirclesOnMap_ByArchInfoData(map, archinfo00, {radius:15000,strokeColor:"#000000",fillColor:"#ff0000"}, DATE_LEGACY_RELICS_SITE_FEATURES);
+  
+  //ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map, archinfo01.LatLngArr,{strokeColor:"#1234ff"});
+  //ChinaArchMapUti.setLatLngArrAsCirclesOnMap(map, archinfo01.LatLngArr,1, {radius:25000}); 
+}
+function Init(){
+  initialize("36.090002, 114.335704","default center 安阳");
+}
+google.maps.event.addDomListener(window, 'load', Init);
+
+
+
+function Next1(){
+        //LatLngArrIndx+=1;
+        //if( LatLngArrIndx >= archinfo00.LatLngArr.length){
+        //    LatLngArrIndx=0;
+        //    clearInterval(setInterval_hander_Next1);
+        //    alert("end and restart");            
+        //};
+        //var date=archinfo00.DateArr[LatLngArrIndx];
+        //var slabel=""+LatLngArrIndx+":"+date+", "+archinfo00.NameArr[LatLngArrIndx];
+        //var olr=gMapLegacy.GetObj(date);//DateLegacyUti.GetObj(DATE_LEGACY_RELICS_SITE_FEATURES,date);
+        //
+        //
+        //ChinaArchMapUti.UpdateMarkerPos(archinfo00.LatLngArr[LatLngArrIndx],slabel);
+        //
+        //        
+        //ChinaArchMapUti.setLatLngArrAsPolylineOnMap2(map,archinfo00.LatLngArr, LatLngArrIndx,{strokeColor:olr.clr});
+        //
+        //if(LatLngArrIndx>0) return;
+        //
+        //ChinaArchMapUti.setLatLngArrAsCirclesOnMap_ByArchInfoData(map, archinfo00, {radius:15000,strokeColor:"#0000ff",fillColor:"#ff0000"}, DATE_LEGACY_RELICS_SITE_FEATURES);
+        //
+        //
+        //var tb=DateLegacyUti.GetTable(DATE_LEGACY_RELICS_SITE_FEATURES);
+        //$("#legacy").html(tb);
+}
+  
+//var setInterval_hander_Next1=0;
+
+  $(document).ready(function(){ 
+  
+
+  
+    //$("#Next1").click(function(){
+    //    Next1();
+    //    clearInterval(setInterval_hander_Next1);
+    //    setInterval_hander_Next1=0;
+    //});
+    //$("#Next1auto").click(function(){
+    //    setInterval_hander_Next1=setInterval(Next1,100);
+    //    $(this).attr("disabled","1");
+    //});
+    
+    //$("#Next2").click(function(){
+    //    ChinaArchMapUti.setLatLngArrAsPolylineOnMap(map, archinfo01.LatLngArr,{strokeColor:"#1234ff"});
+    //    ChinaArchMapUti.setLatLngArrAsCirclesOnMap(map, archinfo01.LatLngArr, 1, {radius:25000});
+    //    LatLngArrIndx+=1;
+    //    if( LatLngArrIndx >= archinfo01.LatLngArr.length){
+    //        LatLngArrIndx=0;
+    //        alert("restart");
+    //        };
+    //    var slabel=""+LatLngArrIndx+":"+archinfo01.NameArr[LatLngArrIndx];
+    //    ChinaArchMapUti.UpdateMarkerPos(archinfo01.LatLngArr[LatLngArrIndx],slabel);
+    //});
+    
+
+    
+    
+    $("#search").click(function(){
+        search2Show();
+    });
+    
+    $("#selsearch").change(function(){
+        var ss=$(this).val();
+        $("#tofind").val(ss);  
+    });
+    
+
+
+    
+    $("#toggletable").click(function(){
+        $("#tables_container").slideToggle("slow");
+    });
+    
+    $("#toggleColorTable").click(function(){
+        $(".mtable").slideToggle("slow");
+    });
+    
+    $("#toggleLegecyTable").click(function(){
+        $("#legacy").slideToggle("slow");
+    });
+    
+    $("#toggletables_container2").click(function(){
+        $("#tables_container2").slideToggle("slow");
+    });
+    
+    $(".togle").click(function(){
+        var txt=$(this).text();
+        if( txt.indexOf("+")>0){
+            txt=txt.replace("+","-");
+        }
+        else if(txt.indexOf("-")>0){
+            txt=txt.replace("-","+");
+        }
+        $(this).text(txt);
+    });
+    
+    
+    
+    $("#operation").change(function(){
+        var op=$(this).val();
+        operation(op);
+    });
+    
+    
+
+
+    $("#legacy").html(gMapLegacy.GetTable());
+        
+    $("#tables_container").append(archinfo00.GetTable());  
+    //$("#tables_container").append(archinfo00.GetFreqTable({scale:200}));
+    //$("#tables_container2").text(archinfo00.GenJsonStr());
+    
+    
+    //$("#tables_container").append(archinfo01.GetTable());  
+    //$("#tables_container").append(archinfo01.GetFreqTable({scale:10}));
+    
+    //$("#tables_container").append(bronzeScriptureDistr.GetTable());  
+    //$("#tables_container").append(bronzeScriptureDistr.GetFreqTable({scale:10}));
+  });//doc
+
+function OnClick_Circle(ev){
+    console.log(ev.latLng+" | "+this.getCenter());
+    
+    var latLng=ev.latLng.toString();
+    var objCir=this;
+
+    var arcDat= objCir.m_objAi;
+
+    var slabe=arcDat.Date+","+arcDat.Name+arcDat.LatLng;
+    ChinaArchMapUti.UpdateMarkerPos(arcDat.LatLng, slabe);
+    
+    var slatlng=arcDat.LatLng.replace(/[\s\(\)]/g,"");
+    slatlng=$.trim(slatlng);
+    $("#tables_container table tr").each(function(){
+        var td2=$(this).find("td:eq(2)");
+        var txt=td2.text();
+        txt=txt.replace(/[\s\(\)]/g,"");
+        if(txt.indexOf(slatlng)>=0){            
+            td2.css("background-color", objCir.fillColor);
+            var bodyTop=$("body").scrollTop();
+            td2[0].scrollIntoView();
+            $("body").scrollTop(bodyTop);
+        }
+    });
+    //$("td:contains('"+slatlng+"')").css("background-color","#cccccc")[0].scrollIntoView();   
+};  
+
+  //table events.
+  function clk_idx(_this){
+    var txt=$(_this).text();
+    if(!$.m_work){
+        return alert("please select color");
+    }
+    var work=$.m_work;
+    if(work.idx===0){
+        work.istart=parseInt(txt);
+        work.idx=1;
+        $(_this).css("background-color",work.cc);
+    }
+    else if(work.idx===1){
+        var istop=parseInt(txt);
+        if(istop<=work.istart){
+            return alert(istop+"<="+work.istart);
+        }
+        work.idx=-1;
+        
+        work.istop=istop;
+        work.fillColor=work.cc;
+        work.radius=10000*parseInt(work.size);
+        work.strokeColor="#0000ff";
+        ChinaArchMapUti.setLatLngArrAsCirclesOnMap_ByArchInfoData_range(map,archinfo00,work);
+        
+        var otable=$(_this).parentsUntil("table");
+        for(var idx=work.istart;idx<=work.istop;idx++){
+            var i=1+parseInt(idx);
+            $(otable).find("tr:eq("+i+")").find("td:eq(0)").css("background-color",work.cc);
+        }
+    }
+    else if(work.idx===-1){
+        return alert("please select color.");
+    }
+    $(_this).css("background-color",work.cc);
+  };
+  
+  function clk_LatLng(_this){
+    var latlng=$(_this).text();
+    var idx=$(_this).prev().prev().text();
+    var Name=""+idx+":"+$(_this).next().text();
+    ChinaArchMapUti.UpdateMarkerPos(latlng,Name);
+    $(_this).addClass("tdclked");
+  }  
+  
+  function clk_Date(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+
+  function clk_Name(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+  function clk_Locate(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+  function clk_Descrp(_this){
+    var latlng=$(_this).text();
+    console.log(latlng);
+
+  }
+  
+  
+  ////
+function legacy_clk_date(_this){
+    var date=$(_this).text();
+    var arr=date.split(",");
+    var iMin=parseInt(arr[0]);
+    var iMax=parseInt(arr[1]);
+    $(_this).css("background-color","#ffffff").css("border","2px solid #FF0000");
+    
+    //var obj=gMapLegacy.GetDateRange(_this);
+    var keywd=$("#tofind").val();
+    var ff=archinfo00.searchInDateRange(iMin,iMax, gMapLegacy.IsDateInRange).searchTxt(keywd);
+    ChinaArchMapUti.setLatLngArrAsCirclesOnMap_ByArchInfoData(map, ff, {radius:15000,strokeColor:"#0000ff",fillColor:"#ff0000"}, gMapLegacy,OnClick_Circle);
+    
+    $("#tables_container").html(ff.GetTable());    
+}
+function legacy_clk_date_only(_this){
+    ChinaArchMapUti.clearCircles();
+    var prev=$(_this).prev();
+    legacy_clk_date(prev);
+}
+function legacy_clk_calc_tot(_this){
+    var iCol=$(_this).index();
+    var tot=0;
+    var itd="td:eq("+iCol+")";
+    $(_this).parentsUntil("table").find("tr").each(function(irow,obj){
+        if(irow>0){        
+            var ss=$(this).find(itd).text();
+            if(!!ss){
+                var nn=parseInt(ss);
+                if(nn != 'NaN' ){
+                    tot+=nn;
+                }
+            }
+        }        
+    });
+    $(_this).text("tot="+tot);  
+}
+  
+  function search2Show(){
+    var keywd=$("#tofind").val();
+
+    
+    $("#selsearch option[value='"+keywd+"']").remove();
+    $("#selsearch").append("<option value='"+keywd+"'>"+keywd+"</option>");
+    
+    var ff=archinfo00.searchTxt(keywd);
+    ChinaArchMapUti.setLatLngArrAsCirclesOnMap_ByArchInfoData(map, ff, {radius:15000,strokeColor:"#0000ff",fillColor:"#ff0000"}, gMapLegacy,OnClick_Circle);
+    
+    if(!keywd || keywd.length==0){
+        $("#tables_container").html(archinfo00.GetTable()); 
+    }    
+    else{
+        $("#tables_container").html(ff.GetTable());  
+    }
+    
+  }
+  function operation(op){
+    switch(op){
+        case "addData00":
+            archinfo00.AddMore(ChinaArchData00,"data00");
+            $("#operation option[value='"+op+"']").remove();
+            $("#tables_container").html(archinfo00.GetTable()); 
+            gMapLegacy.UpdateLegacy(archinfo00);
+        break;
+        case "addData02":
+            archinfo00.AddMore(ChinaArchData02,"data02");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        case "addData10":
+            archinfo00.AddMore(ChinaArchData10,"data10");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        case "addData30":
+            archinfo00.AddMore(ChinaArchData30,"data30");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        case "addBronzeScriptureDistribution":
+            archinfo00.AddMore(BronzeScriptureDistributions,"bronzScripts");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        case "addAncientArchSiteWorld":
+            archinfo00.AddMore(AncientArchSiteWorld,"AncientArchSiteWorld");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        case "addWorldHeritage":
+            var worldHeritage=new WorldHeritageUti(WorldHeritage_en);  
+            worldHeritage.genArchInfoData(); 
+            archinfo00.AddMore(worldHeritage.ArchInfoDat,"worldHeritage");
+            $("#tables_container").html(archinfo00.GetTable());
+            gMapLegacy.UpdateLegacy(archinfo00);
+            $("#operation option[value='"+op+"']").remove();
+        break;
+        
+        case "ClearMapCircles":
+            ChinaArchMapUti.clearCircles();
+            $("#operation").val("op");
+        break;
+        
+        case "DisplayInTable":
+            $("#tables_container").html(archinfo00.GetTable());  
+        break;
+        case "DisplayClosestSitesInTable":
+            $("#tables_container").html(archinfo00.GetTableCloest());  
+        break;
+        case "DisplayInJson":
+            $("#tables_container2").text(archinfo00.GenJsonStr());
+        break;
+        
+        case "addr2latlng":
+            window.open("http://www.latlong.net/convert-address-to-lat-long.html");
+        break;
+        case "DegreeArcConverter":
+            window.open("calc.htm");
+        case "dynastyTable":
+            window.open("ChinaHistoryNameDateTable.htm");
+        break;
+        case "addData00":
+        break;
+        case "addData00":
+        break;
+        case "addData00":
+        break;
+    
+    }
+
+    $("#legacy").html(gMapLegacy.GetTable());
+  };
+        </script>
+	</head>
+	<body>
+		<div id="googleMap" style="width:100%;height:800px;"></div>
+        
+
+
+        <select id='operation'><option>op</option>
+        <option value='addData00'>add:Data00(<-500BC)</option>
+        <option value='addData02'>add:Data02(GovProtected)</option>
+        <option value='addData10'>add:Data10(>-500BC)</option>
+        <option value='addData30'>add:Data30(>-500BC world)</option>
+        <option value='addBronzeScriptureDistribution'>add:BronzeScriptureDistribution</option>
+        <option value='addAncientArchSiteWorld'>add:AncientArchSiteWorld</option>
+        <option value='addWorldHeritage'>add:WorldHeritage</option>
+         <option value=''></option>
+        <option value='ClearMapCircles'>op:ClearMapCircles</option>        
+        <option value='DisplayInTable'>op:DisplayInTable</option>
+        <option value='DisplayClosestSitesInTable'>op:DisplayClosestSitesInTable</option>
+        <option value='DisplayInJson'>op:DisplayInJson</option>
+        <option value=''></option>
+        
+        <option value='addr2latlng'>Link:address2latlng</option>
+        <option value='DegreeArcConverter'>Link:Degree2arc</option>
+        <option value='dynastyTable'>Link:ChinaDynastyTable</option>
+        </select>       
+
+        
+        <button id="search">search</button>
+        <select id='selsearch' style="max-width:20px;"><option></option>
+        <option >车马</option>
+        <option >卜甲龟卜鱼骨</option>
+        <option >文字</option>
+        <option >人种</option>
+        <option >灰坑</option>
+        <option >青铜</option>
+        <option >西周</option>
+        <option >羊皮</option>
+        <option >丝绸</option>
+        <option >稻米</option>
+        <option >青铜时代文化遗存</option>
+        </select>
+        <input id="tofind" value=""></input>
+        
+
+        
+        
+        <a id='posit'>0.0</a>
+        
+        <a class='togle' id="toggletable" title="toggle tables"> tables[-] </a>
+		<div id="tables_container" class="text_container">
+		</div>
+        
+      
+        
+        <a class='togle' id="toggleLegecyTable" title="toggle legacy table"> legacy[-] </a>
+        <div id="legacy"></div>
+        
+        
+        <a class='togle' id="toggleColorTable" title="toggle Color Table"> color[-] </a>
+        <table class="mtable" border='1'>
+    <tbody>
+        <tr>
+            <th>Size</th>
+            <th>Color Name</th>
+            <th>Color Code</th>
+            <th>Color Name</th>
+            <th>Color Code</th>
+        </tr>
+
+        <tr>
+            <td class="Size">1</td>
+            <td class="bld wt" bkclr="FF0000" style="background: Red">Red</td>
+            <td class="tcw ce">
+                <a colr="FF0000">#FF0000</a>
+            </td>
+            <td class="bld" bkclr="FFFFFF" style="background: White">White</td>
+            <td class="tcw ce">
+                <a colr="FFFFFF">#FFFFFF</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">2</td>
+            <td class="bld" bkclr="00FFFF" style="background: Cyan">Cyan</td>
+            <td class="tcw ce">
+                <a colr="00FFFF">#00FFFF</a>
+            </td>
+            <td class="bld" bkclr="C0C0C0" style="background: Silver">Silver</td>
+            <td class="tcw ce">
+                <a colr="C0C0C0">#C0C0C0</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">3</td>
+            <td class="bld wt" bkclr="0000FF" style="background: Blue">Blue</td>
+            <td class="tcw ce">
+                <a colr="0000FF">#0000FF</a>
+            </td>
+            <td class="bld wt" bkclr="808080" style="background: Gray">Gray or Grey</td>
+            <td class="tcw ce">
+                <a colr="808080">#808080</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">4</td>
+            <td class="bld wt" bkclr="0000A0" style="background: DarkBlue">DarkBlue</td>
+            <td class="tcw ce">
+                <a colr="0000A0">#0000A0</a>
+            </td>
+            <td class="bld wt" bkclr="000000" style="background: Black">Black</td>
+            <td class="tcw ce">
+                <a colr="000000">#000000</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">5</td>
+            <td class="bld" bkclr="ADD8E6" style="background: LightBlue">LightBlue</td>
+            <td class="tcw ce">
+                <a colr="ADD8E6">#ADD8E6</a>
+            </td>
+            <td class="bld wt" bkclr="FFA500" style="background: Orange">Orange</td>
+            <td class="tcw ce">
+                <a colr="FF8040">#FFA500</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">6</td>
+            <td class="bld wt" bkclr="800080" style="background: Purple">Purple</td>
+            <td class="tcw ce">
+                <a colr="800080">#800080</a>
+            </td>
+            <td class="bld wt" bkclr="A52A2A" style="background: Brown">Brown</td>
+            <td class="tcw ce">
+                <a colr="A52A2A">#A52A2A</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">7</td>
+            <td class="bld" bkclr="FFFF00" style="background: Yellow">Yellow</td>
+            <td class="tcw ce">
+                <a colr="FFFF00">#FFFF00</a>
+            </td>
+            <td class="bld wt" bkclr="800000" style="background: Maroon">Maroon</td>
+            <td class="tcw ce">
+                <a colr="800000">#800000</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">8</td>
+            <td class="bld" bkclr="00FF00" style="background: Lime">Lime</td>
+            <td class="tcw ce">
+                <a colr="00FF00">#00FF00</a>
+            </td>
+            <td class="bld wt" bkclr="008000" style="background: Green">Green</td>
+            <td class="tcw ce">
+                <a colr="008000">#008000</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="Size">9</td>
+            <td class="bld wt" bkclr="FF00FF" style="background: Fuchsia">Magenta</td>
+            <td class="tcw ce">
+                <a colr="FF00FF">#FF00FF</a>
+            </td>
+            <td class="bld wt" bkclr="808000" style="background: Olive">Olive</td>
+            <td class="tcw ce">
+                <a colr="808000">#808000</a>
+            </td>
+        </tr>
+    </tbody>
+<script>   
+$(document).ready(function(){   
+  $(".tcw").click(function(){
+    var cc=$(this).text();
+    var sz=$(this).closest('tr').find("td:eq(0)").text();
+    $(this).css("background-color",cc).append(" ,"+sz);
+    var work={cc:cc, size:sz, idx:0};
+    $.m_work=work;
+  });
+});//doc
+</script>       
+</table>        
+        
+        <a class='togle' id="toggletables_container2" title="toggle tables_container2"> json[-] </a>
+        <textarea id="tables_container2" class="text_container">
+
+		</textarea>
+	
+	</body>
+</html>

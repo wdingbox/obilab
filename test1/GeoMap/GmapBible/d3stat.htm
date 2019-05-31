@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<title>d3</title>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+<script src="./ChinaArchData00.js"></script>
+<script src="./ArchDataUti.js"></script>
+<script src="./ChinaArchD3Uti.js" charset="utf-8"></script>
+
+
+
+
+<style type="text/css">
+#MapToggler000{
+	left: 0px;
+	padding: 0px;
+	border-style: 0;
+	margin: 0px auto 0px auto;
+	border-width: 1px;
+	position: fixed;
+	
+	z-index:11;
+}
+
+body{
+ 
+}
+
+.overlayDiv {
+	/*  set to width of image  */
+	left: 110px;
+	width: 854px;
+	height:859px; 
+	padding: 0px;
+
+	margin: 0px auto 0px auto;
+
+    border: 1px solid #123456;
+
+
+
+	/*cursor: crosshair;*/
+	
+}
+.overlayDiv2 {
+}
+#mysvg {
+
+	opacity:0.5;
+}
+
+#ChinaPrehistoryMap{
+   top:770px;
+
+   z-index:-1;
+   margin: 770px 0px 0px 0px;
+}
+#btnsarea{
+background-color:#cccccc;
+border:1px solid #ff0000;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div class="overlayDiv3">
+
+	
+<div id='btnsarea'>
+<button id="MapToggler">MapToggler</button>
+<button id='NextSite'>NextSite</button><button id='bt1'>NextTimeDist</button><button id='bt2'>old</button><button id='AllSites'>AllSites</button><button id='flipMapPlus'>flipMap+</button><button id='flipMapMinus'>flipMap-</button><a id='aaa'>aaa</a><br><a id='points'>+++</a>
+	</div>	
+</div>	
+<div class="overlayDiv2">
+<svg id='mysvg' class='overlayDiv'>
+  <polygon pointsx="200,10 250,190 160,210" style="fill:lime;stroke:purple;stroke-width:1" />
+   <polygon pointsx="0,10 250,190 0,0" style="fill:blue;stroke:purple;stroke-width:1" />
+  Sorry, your browser does not support inline SVG.
+</svg>		
+</div>	
+
+<hr/>
+
+
+
+<div id='tables_container'>
+
+		<p id="ret">
+			...</p>	
+	
+</div>
+
+</body></html>

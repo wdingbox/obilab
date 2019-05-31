@@ -1,0 +1,102 @@
+<!DOCtype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title> a </title>
+
+<script type="text/javascript" src="../../_js/jquery.js"></script>
+<!-- Users -->
+</head>
+<style>
+
+divccc .contents_containercccc .contents_containerccccc
+{
+   float: top;
+}
+
+.menuItem
+{
+   float   : left;
+   height  : 15px;
+}
+
+
+</style>
+<script type="text/javascript">
+
+$(document).ready(function(){   
+
+  //
+  //
+  //
+  $(".menuItem").click(function(){
+         var indx = $(this).index();
+         $(".content").hide();
+         $(".content").eq( indx ).toggle();
+         
+         ///colorize the clicked
+         $(".menuItem").css('background-color', 'white');
+         $(this).css('background-color', 'red');
+  });                     
+
+});
+</script>
+
+</head>
+<body>
+
+<div id="div-menu">
+        <div class="workingarea">
+                <div class="menu_container">
+                        <div class="menuItem">
+                                <a>| View1d d ddddddd dddddddddd-dddddd-dddd ddddddd-dddddd dddddddd-ddddddd ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> [ V-iew2d-ddddddddd-ddddddddd ddddffffffff ffffff-ffffff fffffffffffffffff ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> | V-iew3ggggggggggggggg gggggggggggg ggggggg-ggggggg  gggggg-gggggggg  ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> | View1d d ddddddd dddddddddd dddddddddd ddddddddddddd ddddddddddddddd ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> | View2ddddddddddddddddddd ddddffffffff ffffffffffff fffffffffffffffff ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> |View3ggggggggggggggg gggggggggggg gggggggggggggg  gggggggggggggg  ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> [ View1d d ddddddd dddddddddd dddddddddd ddddddddddddd ddddddddddddddd ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> [ View2ddddddddddddddddddd ddddffffffff ffffffffffff fffffffffffffffff ] </a>
+                        </div>
+                        <div class="menuItem">
+                                <a> [ View3ggggggggggggggg gggggggggggg gggggggggggggg  gggggggggggggg  ] </a>
+                        </div>
+                        
+                </div>
+                <br><br><div></div>
+                <div class="contents_container">
+                        <div class="content">
+                                <a>[ ccccccccc--1</a>
+                        </div>
+                        <div class="content">
+                             <a>[   ttttttttttttt 2
+                                afsaff adsfsdfasdfsdfasdf dfasdfsadfsad asdfasdf sadf af asdf sadf sadf asdf asdf asdf sadf sadf sadfsadfsadf sadf asdf sadf asdf safd asdfsadf safsadf asdf asdf sadf saf asdfasdf asdf asfasf asf asf
+
+</a>
+                        </div>
+                        <div class="content">
+                              <a>[   nnnnnnnnnnnnnnnnnn 
+                                3333333333333333333333333333333333333333333333333333333afsaff adsfsdfasdfsdfasdf dfasdfsadfsad asdfasdf sadf af asdf sadf sadf asdf asdf asdf sadf sadf sadfsadfsadf sadf asdf sadf asdf safd asdfsadf safsadf asdf asdf sadf saf asdfasdf asdf asfasf asf asf
+</a>
+
+                        </div>
+                </div>
+
+        </div><!-- /class=menu -->
+</div><!-- /id=div-menu -->
+
+</body>
+</html>

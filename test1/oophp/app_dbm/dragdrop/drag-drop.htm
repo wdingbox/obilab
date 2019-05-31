@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript"  src="./jquery-2.1.1.min.js"></script>   
+
+<script>
+ function allowDrop(ev) {
+     ev.preventDefault();
+ }
+
+ function drag(ev) {
+     ev.dataTransfer.setData("text/html", ev.target.id);
+     //console.log("drag");
+ }
+
+ function drop(ev) {
+     ev.preventDefault();
+     //console.log("drop");
+     var data = ev.dataTransfer.getData("text/html");
+     ev.target.appendChild(document.getElementById(data));
+ }
+ var dragObj=null;
+ $(document).ready(function(){
+			$("#drag1").mouseover(function(idx){
+                dragObj=$(this);
+					var sql = $(this).attr("src");
+					//console.log(sql);
+								  
+			});
+              $("#oksubmit").submit(function(){
+								   var sql = $("#sql").val();
+                           if ( sql.toLowerCase().search("update ") >=0 ){
+                              return confirm("Update?\n"+sql);
+                           }
+                           return true;
+								  });
+});//$(document).ready(function(){  
+</script>
+<style>
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+</head>
+<body>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<img id="drag1" src="t.bmp" draggable="true"
+ ondragstart="drag(event)" width="336" height="69">
+
+ <a id="dlog">dlog</a>
+</body>
+</html>

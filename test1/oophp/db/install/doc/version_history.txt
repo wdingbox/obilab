@@ -1,0 +1,60 @@
+echo "Enc ST 3.00   @2010-08-11am.";
+change "delete camera" mechanism in php.
+     -	Add col in CameraExtra for delete
+     -	DeleteCamera(Uid) need change (set isDeleted=1)
+     -	Add camera neeed change (set default isdeteled=0)
+     -	GetCameraAll need change (filter isdeleted)
+     -	GetCameraCount() (filter isDeleted)
+     -	IPuniqueCheck (filter isDeleted)
+     -	NmaeUniqueCheck(filter isDeleted)
+     -	Dvr available channel (change)
+
+
+3.00.00 @2010-08-03
+- Prepare for first official release. no new changes.
+- Updated vplayer.cab/msi from /wrend02/projects/EncVideo
+- modified lui_isntall.pl 
+- Fixed auto time bar from live to playback.
+- Fixed vplayer.cab version and vlc version
+- add default event 'incident'
+- default user permission enabled.
+
+
+
+2.0 2010-07-28
+- Add camera lock when update.
+
+
+1.9 2010-07-27
+- add export activity log
+- add pdf.
+
+1.8 2010-07-22
+- fixed the lighttpd lock issue by setting curl timeout.
+- fixed EditIP submit button to prevent from twice clcik.
+
+1.7 2010-07-15
+dos2unix
+
+1.3 2010-07-09
+fixed the unix format in vss for snapshotPurge.
+
+
+
+1.2  2010-07-08 
+upgrade to php ver 5.3.2.
+fixed DateTimeZone.
+
+
+
+1.1  2010-07-01 
+reduce errLog.
+
+
+
+1.0 2010-06-28 
+
+Released version for internal test.
+
+0.0
+initial version.

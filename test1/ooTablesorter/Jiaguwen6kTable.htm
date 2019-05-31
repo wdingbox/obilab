@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<title>jg6k</title>
+		<link href="" rel="stylesheet" type="text/css" />
+		<script src="../_js/jquery.js"></script>
+
+			<!-- Demo styling -->
+	<link href="../tablesorter-master/docs/css/jq.css" rel="stylesheet">
+
+	<!-- jQuery: required (tablesorter works with jQuery 1.2.3+) -->
+	<!---s-c-r-i-p-t s-r-c="../../../tablesorter-master/docs/js/jquery-1.2.6.min.js"></script ------>
+
+	<!-- Pick a theme, load the plugin & initialize plugin -->
+	<link href="../tablesorter-master/dist/css/theme.default.min.css" rel="stylesheet">
+
+<!-- .......................................................................... -->
+
+    <!-- ------ Demo stuff for output ----- -->
+    <!-- link  href="../tablesorter-master/docs/css/jquery-ui.min.css" class="ui-theme" rel="stylesheet" -->
+    <script src="../tablesorter-master/docs/js/jquery-ui.min.js"></script>
+    <!-- link  href="../tablesorter-master/docs/css/bootstrap-v3.min.css"  rel="stylesheet" -->
+    <script src="../tablesorter-master/docs/js/bootstrap.min.js"></script><!--  -->
+    <!-- link  href="../tablesorter-master/docs/css/jq.css" rel="stylesheet" -->
+    <!-- link  href="../tablesorter-master/docs/css/prettify.css" rel="stylesheet"-->
+    <!-- link  href="../tablesorter-master/docs/css/tipsy.css" rel="stylesheet" -->
+    <script src="../tablesorter-master/docs/js/prettify.js"></script>
+    <script src="../tablesorter-master/docs/js/docs.js"></script>
+    <script src="../tablesorter-master/docs/js/jquery.tipsy.min.js"></script>
+    <!-- ---------------------- for tablesorter ----------------------------------------------- -->
+    <!-- link  href="../tablesorter-master/css/theme.bootstrap.css" rel="stylesheet" -->
+    <!-- link  href="../tablesorter-master/css/theme.blue.css"      rel="stylesheet" -->
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/js/widgets/widget-output.js"></script>
+    <script src="../tablesorter-master/js/parsers/parser-input-select.js"></script>
+    <!-- link  href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css" rel="stylesheet" -->
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+
+
+
+    	<script src="../tablesorter-master/js/widgets/widget-editable.js"></script>
+
+
+
+
+		<link  href="css/Jiaguwen6kTable.css" rel="stylesheet">
+		
+		<script src="./js/Jiaguwen6kTable_Uti.js"></script>
+		<script src="./js/Jiaguwen6kTable.js"></script>
+		<script src="./js/Jiaguwen6kTable_Calc.js"></script>
+		<script src="./js/Jiaguwen6kTable3.js"></script>
+		<script src="./js/Jiaguwen6kTable2.js"></script>
+		<script src="./js/Jiaguwen6kTable.js"></script>
+		
+		<script src="./jsdat/Jiaguwen6kTable_DatArry.js"></script>
+		<script src="./jsdat/Jgw6k_Catalog.js"></script>	
+
+		<script src="./js/Pinyin7kziUti.js"></script>
+		<script src="./js/NianFuChen7kziListInJgw.js"></script>
+
+
+<style type="text/css">
+#ctrlsContainer_Hidetoggler{
+	position: fixed;
+	top:0px;
+	right: 10px;
+	z-index: 100;
+}
+</style>
+
+</head>
+
+<script>
+///////////////////////////////
+///////////////////////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////
+/////////////                                         /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////                                           /////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+$(document).ready(function(){ 
+	JiaguwenTable.Init();
+	JiaguwenTable.m_chekbox_Id_BaseName="colchk";
+
+	$("#out").val("Total OBI Size: "+JiaguwenTable.m_nOBIsize);
+
+	$("#out").addClass("outSizeMin");
+	$("#outSizer").click(function(){
+		$("#out").toggleClass("outSizeMin outSizeMax");
+	});
+
+
+	$("#pinyinput").bind("keypress",function(e){
+		if(e.which == 13) {
+    	    sel_option_function["search_by_string"]();
+    	}
+	});
+
+	//$("#choice").append("<option value='test'>test</option>");
+	var sop=Gen_Group_Options_funcs(sel_option_function);
+	$("#choice").append(sop);
+	$("#choice").click(function(){
+		var va=$(this).val();
+
+		var sout=$("#out").val();
+		$("#out").val(va+"\n"+sout);
+		
+		//choose_run(va);
+		sel_option_function[va]();
+	});
+
+});
+
+</script>
+
+
+	<body>
+	<button id="ctrlsContainer_Hidetoggler"></button>
+	<div id="ctrlsContainer">
+	<div id="outHolder">
+	<textarea id="out"></textarea><button id="outSizer">...</button> 
+	
+	</div>
+	<div id="imgSelHolder"></div>
+	<span id="menu">
+
+	<table><tr ><td valign="bottom">
+	<input id="pinyinput"></input><br><br>
+	
+	<button id="mode1" >mode1</button><br><br>
+	<br><br>
+	<button id="imgHolderCleaner" title="remove high light images">CleanHili</button><br> 
+	<button id="imgHolderAll" title="remove high light images">CleanAll</button> 
+	<script type="text/javascript">
+	$("#imgHolderCleaner").click(function(){
+		$("#imgSelHolder").find(".hilimg").each(function(){
+			$(this).parentsUntil("#imgSelHolder").remove();
+		});
+	});
+	$("#imgHolderAll").click(function(){
+		if(confirm("remove all?")) $("#imgSelHolder").html("");
+	});
+	$("#mode1").click(function(){
+		var arr= [2,3,5,8,12,13,14,15,16];
+		for(var i=0; i<arr.length; i++){
+			$("#colchk"+arr[i]).attr("checked",false);
+		}
+	});
+
+	$("#ctrlsContainer_Hidetoggler").click(function(){
+		$("#ctrlsContainer").slideToggle();
+	});
+	</script><br>
+	
+	
+	</td><td>
+
+	<div class="multiplechecks">
+	<input id="colchk0"  type="checkbox" checked="true" disabled="disabled" >0 idx</input><br>
+	<input id="colchk1"  type="checkbox" checked="true" disabled="disabled" >1 img</input><br>
+	<input id="colchk2"  type="checkbox" checked="true">2 T</input><br>
+	<input id="colchk3"  type="checkbox" checked="true">3 S</input><br>
+	<input id="colchk4"  type="checkbox" checked="true">4 Frq</input><br>
+	<input id="colchk5"  type="checkbox" checked="true">5 d3</input><br>
+	<input id="colchk6"  type="checkbox" checked="true">6 </input><br>
+	<input id="colchk7"  type="checkbox" checked="true">7 img</input><br>
+	<input id="colchk8"  type="checkbox" checked="true">8 img</input><br>
+	<input id="colchk9"  type="checkbox" checked="true">9 py</input><br>
+	<input id="colchk10" type="checkbox" checked="true">10eng</input><br>
+	<input id="colchk11" type="checkbox" checked="true">11des</input><br>
+	<input id="colchk12" type="checkbox" checked="true">12x</input><br>
+	<input id="colchk13" type="checkbox" checked="true">13y</input><br>
+	<input id="colchk14" type="checkbox" checked="true">14z</input><br>
+	<input id="colchk15" type="checkbox" checked="true">15w</input><br>
+	<input id="colchk16" type="checkbox" checked="true">16y</input>
+	</div>
+
+	</td><td>
+
+<select id="choice" size='14'>
+</select>
+
+</td></tr></table>
+	</span>
+	</div>
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<div id="base"></div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	</body>
+</html>

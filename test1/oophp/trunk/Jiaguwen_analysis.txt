@@ -1,0 +1,76 @@
+6k bti can be classified using following methods:
+
+
+group(124)          vtbl_lead_and_members           jink=1        1)standalone, root, component, leaf
+   
+disassembly(510)    vtbl_component_and_children     jink>1         component(root, children, leaf
+
+Root    (990)       view_Jiaguwen_Roots             jink=0        1)standalone, grouped ,special(unkn) 
+
+
+union (root, lead, compnent)
+
+
+
+picto/logo divided
+
+
+
+logo linear 
+
+Logo OOA.
+
+
+
+
+
+
+
+
+
+
+
+1) group (A,A1,A2,A3,,,Am)=g(A). A is the lead or representative of group
+   if in g(A), A[k] is found in components, take A[k] out.
+2) disassembly  leaf:  L = [ [ABCD] [BCD]...[..] ] 
+                   = {e[0],e[1],e[2],,,} 
+                   = {[ABCD],[BCD],,,,,}, 
+                   = {[{A,B,C,D}], [{B,C,D}],,,,,[]}
+   unique componets. (L) = {A,B,C,D,,,,,} 
+   components(root, or subcomponents)
+
+3) compnents divided by log and picto.
+
+4) OOA on logo components(root or child)
+   3.1) Laniear OOA Analyses.            
+   3.2) Logo OOA.
+
+   
+   
+   
+1) compositions vs root(root, child, leaf)
+2) inheritance (mutation, rotation, encapusulation)
+3) pitcture vs logo, ambigu
+4) number of lines. (-,=,n)
+5) polymorphism(ding)
+
+
+
+1.0, 
+1.1, 
+1.2 
+1.3
+
+2.0
+2.1001
+2.1002
+2.1003
+2.1007
+
+3.0
+
+4.0
+
+2002.0 man
+
+ 

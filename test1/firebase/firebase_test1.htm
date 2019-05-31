@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'>
+  </head>
+  <body>
+    <div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='Name'/>
+    <input type='text' id='messageInput' placeholder='Message'/>
+    <button id='testlogin'>testlogin</button>
+    <button id='fblogin'>fblogin</button>
+    <button id='register'>register</button>
+
+    <script>
+      var myDataRef = new Firebase('https://torrid-fire-1353.firebaseio.com/');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+
+          test1();
+        }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+      function sample(){
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.push({name: name, text: text});
+          $('#messageInput').val('');
+      }
+      function test1(){
+        var usersRef = myDataRef.child("users");
+        usersRef.set({
+          alanisawesome: {
+            date_of_birth: "June 23, 1912",
+            full_name: "Alan Turing"
+          },
+          gracehop: {
+            date_of_birth: "December 9, 1906",
+            full_name: "Grace Hopper"
+          }
+        });
+      }
+
+
+
+      $(document).ready(function(){
+        $("#testlogin").click(function(){
+          testlogin();
+        });
+                
+        $("#fblogin").click(function(){
+          fblogin();
+        })
+
+        $("#register").click(function(){
+          register();
+        })
+
+      })
+
+
+      // Create a callback which logs the current auth state
+      function authDataCallback(authData) {
+        if (authData) {
+          console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        } else {
+          console.log("User is logged out");
+        }
+      }
+      function fblogin(){
+        // Register the callback to be fired every time auth state changes
+        var ref = new Firebase("https://torrid-fire-1353.firebaseio.com");
+        // Or via popular OAuth providers ("facebook", "github", "google", or "twitter")
+        ref.authWithOAuthPopup("facebook", authHandler);
+        //ref.authWithOAuthRedirect("facebook", authHandler);      
+      }
+      function testlogin(){
+        // Register the callback to be fired every time auth state changes
+        var ref = new Firebase("https://torrid-fire-1353.firebaseio.com");
+        ref.onAuth(authDataCallback);      
+
+
+        // Authenticate users with a custom authentication token
+        ref.authWithCustomToken("<token>", authHandler);
+
+        // Alternatively, authenticate users anonymously
+        ref.authAnonymously(authHandler);
+
+        // Or with an email/password combination
+        ref.authWithPassword({
+          email    : 'bobtony@firebase.com',
+          password : 'correcthorsebatterystaple'
+        }, authHandler);
+
+        // Or via popular OAuth providers ("facebook", "github", "google", or "twitter")
+        ref.authWithOAuthPopup("facebook", authHandler);
+        //ref.authWithOAuthRedirect("facebook", authHandler);      
+      }
+
+      // Create a callback to handle the result of the authentication
+      function authHandler(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+        }
+      }
+      function register(){
+
+      }
+
+
+
+    </script>
+  </body>
+</html>

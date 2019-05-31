@@ -1,0 +1,25 @@
+
+<select id="selop">
+<option></option>
+<option>exchangeNodes</option>
+<option>changeParentNode</option>
+<option></option>
+<option></option>
+</select>
+<script>
+$(document).ready(function(){
+ $("#selop").change(function(){
+  var val=$(this).val();
+  console.log(val);
+  switch(val){
+   case "exchange2Nodes":
+   $('*').css('cursor','wait');
+   alert();
+   break;
+   case "changeParentNode":
+    $("body").css("cursor","e-resize");
+   break;
+  }
+ });
+});
+</script>

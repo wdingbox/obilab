@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://viroscope.info/#/collapse1 -->
+<html class="no-js ngrs-no-touch"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<base href="/">--><base href=".">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="./viroscope.info_files/1d7769e0.vendor.css">
+    <link rel="stylesheet" href="./viroscope.info_files/3729ff16.main.css">
+  </head>
+  <body ng-app="viroscope-app" class="ng-scope">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using a <strong>massively out of date</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <!-- <div class="container" ng-include="'partials/main'" ng-controller="MainCtrl"> -->
+
+    <div class="container-fluid ng-scope" ng-controller="MainCtrl">
+      <!-- ngInclude: 'partials/navbar' --><div ng-include="&#39;partials/navbar&#39;" class="ng-scope"><div class="header ng-scope" ng-controller="NavbarCtrl">
+  <ul class="nav nav-pills pull-right">
+    <!-- ngRepeat: item in menu --><li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}" class="ng-scope">
+        <a ng-href="/" class="ng-binding" href="http://viroscope.info/">About</a>
+    </li><!-- end ngRepeat: item in menu -->
+  </ul>
+  <h3 class="text-muted">viroscope</h3>
+</div></div>
+      <div class="row">
+        <div class="col-sm-2">
+          <!-- ngInclude: 'partials/accordion' --><div ng-include="&#39;partials/accordion&#39;" class="ng-scope"><div class="panel-group ng-scope" id="accordion">
+
+  <!-- Taxonomy -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse1">
+          Taxonomy
+        </a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <input type="checkbox" ng-model="taxonomy[0]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Root
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">1</span>)<br>
+        <input type="checkbox" ng-model="taxonomy[1]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Order
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">7</span>)<br>
+        <input type="checkbox" ng-model="taxonomy[2]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Family
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">92</span>)<br>
+        <input type="checkbox" ng-model="taxonomy[3]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Sub-family
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">22</span>)<br>
+        <input type="checkbox" ng-model="taxonomy[4]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Genus
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">0</span>)<br>
+        <input type="checkbox" ng-model="taxonomy[5]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Species
+        (<span ng-model="counts" class="ng-pristine ng-valid ng-binding">0</span>)<br>
+        <br>
+        <input type="checkbox" ng-model="displayUnassignedNodes[0]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 
+        Group unassigned nodes
+      </div>
+    </div>
+  </div>
+
+  <!-- Virion size -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse2">
+          Virion size
+        </a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+        <!-- Slider -->
+        Virion min/max dimension (nm)<br>
+        <div class="ngrs-range-slider ng-isolate-scope ngrs-horizontal" range-slider="" min="morphologySlider.minWidth" max="morphologySlider.maxWidth" model-min="morphologySlider.sliderMin" model-max="morphologySlider.sliderMax"><div class="ngrs-runner"><div class="ngrs-handle ngrs-handle-min" style="left: 0%; display: block;"><i></i></div><div class="ngrs-handle ngrs-handle-max" style="left: 100%; display: block;"><i></i></div><div class="ngrs-join" style="left: 0%; right: 0%;"></div></div><div class="ngrs-value ngrs-value-min ng-binding" ng-show="showValues">3</div><div class="ngrs-value ngrs-value-max ng-binding" ng-show="showValues">3500</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Virion morphology -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse3">
+          Virion morphology
+        </a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+        <!-- TODO: Metaviridae -->
+        <input type="checkbox" ng-model="morphology.allantoid" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Allantoid<br>
+        <input type="checkbox" ng-model="morphology.bacilliform" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Bacilliform<br>
+        <input type="checkbox" ng-model="morphology.bottleShaped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Bottle-shaped<br>
+        <input type="checkbox" ng-model="morphology.bulletShaped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Bullet-shaped<br>
+        <input type="checkbox" ng-model="morphology.coiled" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Coiled<br>
+        <input type="checkbox" ng-model="morphology.dropletShaped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Droplet-shaped<br>
+        <input type="checkbox" ng-model="morphology.filamentous" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Filamentous<br>
+        <input type="checkbox" ng-model="morphology.icosahedral" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Icosahedral<br>
+        <input type="checkbox" ng-model="morphology.icosahedralHead" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Icosahedral head<br>
+        <input type="checkbox" ng-model="morphology.icosahedralCore" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Icosahedral core<br>
+        <input type="checkbox" ng-model="morphology.intracellular" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Intracellular<br>
+        <input type="checkbox" ng-model="morphology.rnp" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Intracellular RNP complex<br>
+        <input type="checkbox" ng-model="morphology.lemonShaped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Lemon-shaped<br>
+        <input type="checkbox" ng-model="morphology.ovoidal" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Ovoidal<br>
+        <input type="checkbox" ng-model="morphology.pleomorphic" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Pleomorphic<br>
+        <input type="checkbox" ng-model="morphology.prolateEllipsoid" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Prolate ellipsoid<br>
+        <input type="checkbox" ng-model="morphology.pseudoIcosahedral" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Pseudo icosahedral<br>
+        <input type="checkbox" ng-model="morphology.quasiSpherical" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Quasi-spherical<br>
+        <input type="checkbox" ng-model="morphology.rodShaped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Rod-shaped<br>
+        <input type="checkbox" ng-model="morphology.shortTail" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Short-tailed<br>
+        <input type="checkbox" ng-model="morphology.spherical" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Spherical<br>
+        <input type="checkbox" ng-model="morphology.tail" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Tail<br>
+        <input type="checkbox" ng-model="morphology.twoTailed" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Two-tailed<br>
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;morphology&#39;, true)">Select all</button>
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;morphology&#39;, false)">Select none</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Envelope -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse4">
+          Envelope
+        </a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+        <input type="checkbox" ng-model="envelope.enveloped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Envelope<br>
+        <input type="checkbox" ng-model="envelope.notEnveloped" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> No envelope<br>
+        <input type="checkbox" ng-model="envelope.both" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Both<br>
+        <input type="checkbox" ng-model="envelope.NA" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Not applicable<br>
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;envelope&#39;, true)">Select all</button>
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;envelope&#39;, false)">Select none</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Genome length -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse5">
+          Genome length
+        </a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse">
+      <div class="panel-body">
+        <!-- Slider -->
+        Genome length (kb)<br>
+        <div class="ngrs-range-slider ng-isolate-scope ngrs-horizontal" range-slider="" min="genomeSlider.minWidth" max="genomeSlider.maxWidth" model-min="genomeSlider.sliderMin" model-max="genomeSlider.sliderMax"><div class="ngrs-runner"><div class="ngrs-handle ngrs-handle-min" style="left: 0%; display: block;"><i></i></div><div class="ngrs-handle ngrs-handle-max" style="left: 100%; display: block;"><i></i></div><div class="ngrs-join" style="left: 0%; right: 0%;"></div></div><div class="ngrs-value ngrs-value-min ng-binding" ng-show="showValues">0.25</div><div class="ngrs-value ngrs-value-max ng-binding" ng-show="showValues">1200</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Genome class -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse6">
+          Genome class
+        </a>
+      </h4>
+    </div>
+    <div id="collapse6" class="panel-collapse collapse">
+      <div class="panel-body">
+        ICTV
+        <br>
+        <input type="checkbox" ng-model="genome.ssDNAPositive" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssDNA (+)<br>
+        <input type="checkbox" ng-model="genome.ssDNANegative" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssDNA (-)<br>
+        <input type="checkbox" ng-model="genome.ssDNANegativeOrAmbi" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssDNA (-) or (+/-)<br>
+        <input type="checkbox" ng-model="genome.ssDNAAmbi" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssDNA (+/-)<br>
+        <input type="checkbox" ng-model="genome.dsDNA" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> dsDNA<br>
+        <input type="checkbox" ng-model="genome.dsDNART" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> dsDNA RT<br>
+        <input type="checkbox" ng-model="genome.ssRNAPositive" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssRNA (+)<br>
+        <input type="checkbox" ng-model="genome.ssRNARTPositive" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssRNA (+) RT<br>
+        <input type="checkbox" ng-model="genome.ssRNANegative" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssRNA (-)<br>
+        <input type="checkbox" ng-model="genome.ssRNAAmbi" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> ssRNA (+/-)<br>
+        <input type="checkbox" ng-model="genome.dsRNA" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> dsRNA<br>
+        <br>
+        Baltimore
+        <br>
+        <input type="checkbox" ng-model="genome.baltimore[0]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 1: dsDNA (+/-)<br>
+        <input type="checkbox" ng-model="genome.baltimore[1]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 2: ssDNA (+)<br>
+        <input type="checkbox" ng-model="genome.baltimore[2]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 3: dsRNA (+/-)<br>
+        <input type="checkbox" ng-model="genome.baltimore[3]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 4: ssRNA (+)<br>
+        <input type="checkbox" ng-model="genome.baltimore[4]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 5: ssRNA (-)<br>
+        <input type="checkbox" ng-model="genome.baltimore[5]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 6: ssRNA (+) RT<br>
+        <input type="checkbox" ng-model="genome.baltimore[6]" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> 7: dsDNA (+/-) RT<br>
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="setAllGenome(true)">Select all</button>
+          <button type="button" class="btn btn-default" ng-click="setAllGenome(false)">Select none</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Genome organization -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse7">
+          Genome organization
+        </a>
+      </h4>
+    </div>
+    <div id="collapse7" class="panel-collapse collapse">
+      <div class="panel-body">
+        <input type="checkbox" ng-model="genomeOrganization.linear" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Linear<br>
+        <input type="checkbox" ng-model="genomeOrganization.circular" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Circular<br>
+        <input type="checkbox" ng-model="genomeOrganization.coiled" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Coiled<br>
+        <input type="checkbox" ng-model="genomeOrganization.segmented" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Segmented<br>
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;genomeOrganization&#39;, true)">Select all</button>
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;genomeOrganization&#39;, false)">Select none</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Host range -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="http://viroscope.info/#collapse8">
+          Host range
+        </a>
+      </h4>
+    </div>
+    <div id="collapse8" class="panel-collapse collapse">
+      <div class="panel-body">
+        <input type="checkbox" ng-model="host.algae" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Algae<br>
+        <input type="checkbox" ng-model="host.archaea" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Archaea<br>
+        <input type="checkbox" ng-model="host.bacteria" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Bacteria<br>
+        <input type="checkbox" ng-model="host.fungi" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Fungi<br>
+        <input type="checkbox" ng-model="host.invertebrates" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Invertebrates<br>
+        <input type="checkbox" ng-model="host.plants" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Plants<br>
+        <input type="checkbox" ng-model="host.protozoa" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Protozoa<br>
+        <input type="checkbox" ng-model="host.vertebrates" ng-change="viroscope.refresh()" class="ng-pristine ng-valid"> Vertebrates<br>
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;host&#39;, true)">Select all</button>
+          <button type="button" class="btn btn-default" ng-click="setAll(&#39;host&#39;, false)">Select none</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Display
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+          Display
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSeven" class="panel-collapse collapse">
+      <div class="panel-body">
+        Tree layout, etc.
+      </div>
+    </div>
+  </div>
+  -->
+
+</div></div>
+
+          <!-- 
+              Why does this include cause the $scope.searchText variable
+              in main.coffee to not get updated?  We have to include the
+              search.html text here for some reason.
+
+              <div ng-include="'partials/search'"></div>
+          -->
+          <div id="search">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+              <input id="search-input" type="text" class="form-control ng-pristine ng-valid" placeholder="Search..." ng-model="searchText" ng-change="viroscope.refresh()">
+            </div>
+          </div>
+
+          <!-- Unpin button -->
+          <div ng-model="nodesPinned" class="ng-pristine ng-valid">
+            <div ng-show="nodesPinned &gt; 0" class="ng-hide">
+              <div class="btn-group btn-group-xs">
+                <button type="button" class="btn btn-default" id="release-pinned-nodes" ng-click="unpinAll()">Release pinned nodes</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ngInclude: 'partials/info' --><div ng-include="&#39;partials/info&#39;" class="ng-scope"><div ng-model="infoNode" class="ng-scope ng-pristine ng-valid">
+  <div ng-show="infoNode" class="ng-hide">
+    <div class="info-box ng-binding">
+      <span class="virus-name ng-binding"></span><br><br>
+
+      <span class="info-title">Virion (nm):</span> <br>
+      <span class="info-title">Morphology:</span> <br>
+      <span class="info-title">Envelope:</span> <br>
+      <span class="info-title">Genome length (kb):</span> <br>
+      <span class="info-title">Genome type:</span> <br>
+      <span class="info-title">Genome org:</span> <br>
+      <span class="info-title">Host:</span> <br>
+
+      <!-- Why do these cause Angular to go nuts? -->
+      <!-- <span class="info-title">Links:</span> <span ng-repeat="link in infoNode.format.links()" ng-bind-html="link"><a href="{{link.url}}">{{link.title}}</a> </span><br/> -->
+      <!-- <span class="info-title">Links:</span> {{infoNode.format.links()}} -->
+      <!-- <span ng-repeat="link in infoNode.format.links()"> {{link.title}} </span><br/> -->
+
+      <div ng-show="infoNodeLocked" class="ng-hide">
+        <br>
+        <div class="btn-group btn-group-xs">
+          <button type="button" class="btn btn-default" ng-click="unlockInfoNode()">Unlock</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+        </div>
+
+        <div class="col-sm-10">
+          <div id="viroscope"><svg class="main-view" width="100%" height="85%" viewBox="0 0 1050 350" preserveAspectRatio="xMidYMid" pointer-events="all"><g><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="657.2329504183206" y2="300.16543458709236"></line><line class="link" x1="657.2329504183206" y1="300.16543458709236" x2="676.4990561966056" y2="409.45476078499394"></line><line class="link" x1="676.4990561966056" y1="409.45476078499394" x2="736.2889707117328" y2="472.1480592735023"></line><line class="link" x1="676.4990561966056" y1="409.45476078499394" x2="697.0356931805217" y2="495.2440338622857"></line><line class="link" x1="676.4990561966056" y1="409.45476078499394" x2="657.5375034802529" y2="496.8729651360757"></line><line class="link" x1="657.2329504183206" y1="300.16543458709236" x2="629.5177229035952" y2="408.89243650827694"></line><line class="link" x1="629.5177229035952" y1="408.89243650827694" x2="609.97421048181" y2="499.71609826112837"></line><line class="link" x1="629.5177229035952" y1="408.89243650827694" x2="576.2366587653347" y2="487.06855875379654"></line><line class="link" x1="657.2329504183206" y1="300.16543458709236" x2="701.1574860253556" y2="380.97886696591684"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="685.7384856394297" y2="43.613210780551995"></line><line class="link" x1="685.7384856394297" y1="43.613210780551995" x2="678.2742765463057" y2="-51.79448293920041"></line><line class="link" x1="685.7384856394297" y1="43.613210780551995" x2="725.2208733538052" y2="-63.923304348317075"></line><line class="link" x1="725.2208733538052" y1="-63.923304348317075" x2="783.2123407809459" y2="-125.11936701070682"></line><line class="link" x1="725.2208733538052" y1="-63.923304348317075" x2="728.9401550936149" y2="-151.27100770358518"></line><line class="link" x1="725.2208733538052" y1="-63.923304348317075" x2="686.4438485133611" y2="-146.7231649991385"></line><line class="link" x1="685.7384856394297" y1="43.613210780551995" x2="750.6081540033218" y2="-27.101103567263486"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="725.5876521102057" y2="138.55467597063677"></line><line class="link" x1="725.5876521102057" y1="138.55467597063677" x2="803.7945099053487" y2="93.99191565590864"></line><line class="link" x1="725.5876521102057" y1="138.55467597063677" x2="822.0186396510613" y2="114.39343649210032"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="631.9810179682028" y2="24.452304911484102"></line><line class="link" x1="631.9810179682028" y1="24.452304911484102" x2="696.7171254408657" y2="-35.67259603682707"></line><line class="link" x1="631.9810179682028" y1="24.452304911484102" x2="641.4947635188981" y2="-71.91152240310237"></line><line class="link" x1="631.9810179682028" y1="24.452304911484102" x2="584.0686543725469" y2="-84.02334982289861"></line><line class="link" x1="584.0686543725469" y1="-84.02334982289861" x2="563.8164154316444" y2="-173.52683784209205"></line><line class="link" x1="584.0686543725469" y1="-84.02334982289861" x2="523.7100152406487" y2="-156.54305657916973"></line><line class="link" x1="631.9810179682028" y1="24.452304911484102" x2="610.2518405021285" y2="-67.60924582556574"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="708.3842248373668" y2="244.8649128223874"></line><line class="link" x1="708.3842248373668" y1="244.8649128223874" x2="791.0619566471498" y2="288.0285497817741"></line><line class="link" x1="708.3842248373668" y1="244.8649128223874" x2="766.442102713337" y2="336.28736228474554"></line><line class="link" x1="766.442102713337" y1="336.28736228474554" x2="799.2470730902643" y2="417.2011105685989"></line><line class="link" x1="766.442102713337" y1="336.28736228474554" x2="840.8669241807129" y2="380.4755302127553"></line><line class="link" x1="708.3842248373668" y1="244.8649128223874" x2="727.7468957997435" y2="333.02107005242937"></line><line class="link" x1="708.3842248373668" y1="244.8649128223874" x2="770.9855433796653" y2="308.5310270585993"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="737.7773916938568" y2="187.24583686301793"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="797.0815705483682" y2="250.72290091698866"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="821.5872230210177" y2="213.62116722488568"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="833.7604301355518" y2="192.22681183622817"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="831.3025699876935" y2="167.8377633493885"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="826.4739814462716" y2="238.20789002186535"></line><line class="link" x1="826.4739814462716" y1="238.20789002186535" x2="906.4479645029121" y2="269.6597563773363"></line><line class="link" x1="737.7773916938568" y1="187.24583686301793" x2="816.9504021083725" y2="146.93723135617412"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="716.4123022380476" y2="95.25080220440502"></line><line class="link" x1="716.4123022380476" y1="95.25080220440502" x2="796.4222800880602" y2="41.706725440403154"></line><line class="link" x1="716.4123022380476" y1="95.25080220440502" x2="753.9475829544621" y2="13.853634361353018"></line><line class="link" x1="716.4123022380476" y1="95.25080220440502" x2="779.8670313503317" y2="23.486498285066347"></line><line class="link" x1="716.4123022380476" y1="95.25080220440502" x2="808.4443163169753" y2="62.220639012708276"></line><line class="link" x1="627.3720630092024" y1="156.97774940396422" x2="459.9481791110589" y2="171.1358548797106"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="500.6614521514118" y2="93.23152603206965"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="407.72389128366984" y2="100.07012100018424"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="481.1945193095139" y2="299.27965513264417"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="337.3868340914867" y2="143.4547440804287"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="557.3121947207367" y2="110.79000767578853"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="364.4975046826509" y2="261.5532821380727"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="358.67278662608436" y2="164.5304296962167"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="332.9889234631637" y2="197.19393999344103"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="384.48811106066574" y2="213.32111715985118"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="569.2501138226947" y2="156.53475193947045"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="495.27409998518715" y2="67.6433165520234"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="569.8872093818907" y2="202.6944937550581"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="538.6418894837003" y2="256.43991970984126"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="401.07335290134654" y2="71.18004402290902"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="564.5684038376502" y2="224.97514717418105"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="543.6753797386991" y2="203.99716476524694"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="555.9883482002778" y2="244.48473513538895"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="402.16249936887675" y2="237.56085502793854"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="475.50719021414733" y2="81.29787310153559"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="362.7599684131486" y2="109.8841185940252"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="433.3942494021109" y2="252.06270849072396"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="380.0272421041927" y2="123.44653572091113"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="342.8868026281789" y2="120.3935338283044"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="482.5497316931333" y2="276.4329597265241"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="373.96789973434454" y2="77.63308337670212"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="364.03490341490544" y2="222.87296704645206"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="465.2434233031394" y2="54.57454847938645"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="425.60775975794905" y2="84.49616446405614"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="510.6474628052383" y2="266.34526877045266"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="485.7466742141065" y2="46.390473748633354"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="525.3106229111345" y2="106.53704581382311"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="542.6192138930335" y2="150.805425951328"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="529.7040150188814" y2="276.3775373797247"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="464.4774910339364" y2="259.664948886917"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="372.7697384189327" y2="184.2185791824277"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="409.0447280147488" y2="286.54995513755455"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="538.7053211114923" y2="126.20134578422737"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="385.0111199982822" y2="96.16089702202747"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="491.34816902274736" y2="251.9234040481327"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="376.7303185443237" y2="291.9516946246819"></line><line class="link" x1="376.7303185443237" y1="291.9516946246819" x2="311.14865535278284" y2="382.77933801438894"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="389.4468549035562" y2="267.8663647191155"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="355.6532818552169" y2="199.6926868534344"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="573.0542554593843" y2="179.78981007014343"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="505.1308285223913" y2="290.57970075841564"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="337.87977838075426" y2="221.39546704461907"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="431.4948807782625" y2="292.10864675003404"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="535.1054478408521" y2="226.5294235317508"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="418.14427956644306" y2="52.75791636407759"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="364.0144339824933" y2="144.14225742902252"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="388.2107780712775" y2="43.447625608359424"></line><line class="link" x1="388.2107780712775" y1="43.447625608359424" x2="356.32361195572514" y2="-59.634194235793224"></line><line class="link" x1="388.2107780712775" y1="43.447625608359424" x2="319.78635769343566" y2="-39.496488093897874"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="338.9328503388912" y2="173.5795008200958"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="525.7182473718178" y2="80.32542635064414"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="566.4241574750763" y2="133.27176349231067"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="516.3064716165103" y2="60.149114129311194"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="438.1173458759718" y2="62.26974660903013"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="412.81481308821003" y2="262.3468339878604"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="349.51378173433386" y2="243.48604761209438"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="345.6725112485975" y2="91.25787186781722"></line><line class="link" x1="345.6725112485975" y1="91.25787186781722" x2="402.7701299894316" y2="146.8685762370537"></line><line class="link" x1="345.6725112485975" y1="91.25787186781722" x2="256.49277684005796" y2="30.11929972436966"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="547.7658583580459" y2="88.48455788347299"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="451.7679795074091" y2="82.43535072290375"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="437.71540052181007" y2="318.85279169598226"></line><line class="link" x1="437.71540052181007" y1="318.85279169598226" x2="437.32210056041333" y2="428.26477874371653"></line><line class="link" x1="437.71540052181007" y1="318.85279169598226" x2="397.9345819455516" y2="421.62988574346866"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="312.90144662773935" y2="165.93280255294772"></line><line class="link" x1="312.90144662773935" y1="165.93280255294772" x2="208.6554186836085" y2="190.27091302121977"></line><line class="link" x1="312.90144662773935" y1="165.93280255294772" x2="208.66644384921676" y2="143.40022367403571"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="515.4528570341137" y2="240.42532334276325"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="458.85433879011174" y2="293.3597388541078"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="379.6104946398913" y2="243.64262560656493"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="446.9645911821283" y2="40.9701176640132"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="547.7685695712897" y2="178.25863426092383"></line><line class="link" x1="459.9481791110589" y1="171.1358548797106" x2="443.9515241583131" y2="273.6193785776255"></line><g class="node" transform="translate(627.3720630092024, 156.97774940396422)"><circle r="6" style="fill: red;"></circle><text dy="1.5em">root</text></g><g class="node" transform="translate(657.2329504183206, 300.16543458709236)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Caudovirales</text></g><g class="node" transform="translate(676.4990561966056, 409.45476078499394)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Myoviridae</text></g><g class="node" transform="translate(736.2889707117328, 472.1480592735023)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Peduovirinae</text></g><g class="node" transform="translate(697.0356931805217, 495.2440338622857)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Spounavirinae</text></g><g class="node" transform="translate(657.5375034802529, 496.8729651360757)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Tevenvirinae</text></g><g class="node" transform="translate(629.5177229035952, 408.89243650827694)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Podoviridae</text></g><g class="node" transform="translate(609.97421048181, 499.71609826112837)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Autographivirinae</text></g><g class="node" transform="translate(576.2366587653347, 487.06855875379654)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Picovirinae</text></g><g class="node" transform="translate(701.1574860253556, 380.97886696591684)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Siphoviridae</text></g><g class="node" transform="translate(685.7384856394297, 43.613210780551995)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Herpesvirales</text></g><g class="node" transform="translate(678.2742765463057, -51.79448293920041)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Alloherpesviridae</text></g><g class="node" transform="translate(725.2208733538052, -63.923304348317075)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Herpesviridae</text></g><g class="node" transform="translate(783.2123407809459, -125.11936701070682)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Alphaherpesvirinae</text></g><g class="node" transform="translate(728.9401550936149, -151.27100770358518)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Betaherpesvirinae</text></g><g class="node" transform="translate(686.4438485133611, -146.7231649991385)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Gammaherpesvirinae</text></g><g class="node" transform="translate(750.6081540033218, -27.101103567263486)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Malacoherpesviridae</text></g><g class="node" transform="translate(725.5876521102057, 138.55467597063677)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Ligamenvirales</text></g><g class="node" transform="translate(803.7945099053487, 93.99191565590864)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Lipothrixviridae</text></g><g class="node" transform="translate(822.0186396510613, 114.39343649210032)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Rudiviridae</text></g><g class="node" transform="translate(631.9810179682028, 24.452304911484102)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Mononegavirales</text></g><g class="node" transform="translate(696.7171254408657, -35.67259603682707)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Bornaviridae</text></g><g class="node" transform="translate(641.4947635188981, -71.91152240310237)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Filoviridae</text></g><g class="node" transform="translate(584.0686543725469, -84.02334982289861)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Paramyxoviridae</text></g><g class="node" transform="translate(563.8164154316444, -173.52683784209205)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Paramyxovirinae</text></g><g class="node" transform="translate(523.7100152406487, -156.54305657916973)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Pneumovirinae</text></g><g class="node" transform="translate(610.2518405021285, -67.60924582556574)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Rhabdoviridae</text></g><g class="node" transform="translate(708.3842248373668, 244.8649128223874)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Nidovirales</text></g><g class="node" transform="translate(791.0619566471498, 288.0285497817741)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Arteriviridae</text></g><g class="node" transform="translate(766.442102713337, 336.28736228474554)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Coronaviridae</text></g><g class="node" transform="translate(799.2470730902643, 417.2011105685989)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Coronavirinae</text></g><g class="node" transform="translate(840.8669241807129, 380.4755302127553)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Torovirinae</text></g><g class="node" transform="translate(727.7468957997435, 333.02107005242937)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Mesoniviridae</text></g><g class="node" transform="translate(770.9855433796653, 308.5310270585993)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Roniviridae</text></g><g class="node" transform="translate(737.7773916938568, 187.24583686301793)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Picornavirales</text></g><g class="node" transform="translate(797.0815705483682, 250.72290091698866)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Dicistroviridae</text></g><g class="node" transform="translate(821.5872230210177, 213.62116722488568)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Iflaviridae</text></g><g class="node" transform="translate(833.7604301355518, 192.22681183622817)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Marnaviridae</text></g><g class="node" transform="translate(831.3025699876935, 167.8377633493885)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Picornaviridae</text></g><g class="node" transform="translate(826.4739814462716, 238.20789002186535)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Secoviridae</text></g><g class="node" transform="translate(906.4479645029121, 269.6597563773363)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Comovirinae</text></g><g class="node" transform="translate(816.9504021083725, 146.93723135617412)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">family not assigned</text></g><g class="node" transform="translate(716.4123022380476, 95.25080220440502)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">Tymovirales</text></g><g class="node" transform="translate(796.4222800880602, 41.706725440403154)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Alphaflexiviridae</text></g><g class="node" transform="translate(753.9475829544621, 13.853634361353018)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Betaflexiviridae</text></g><g class="node" transform="translate(779.8670313503317, 23.486498285066347)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Gammaflexiviridae</text></g><g class="node" transform="translate(808.4443163169753, 62.220639012708276)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Tymoviridae</text></g><g class="node" transform="translate(459.9481791110589, 171.1358548797106)"><circle r="6" style="fill: rgb(37, 52, 148);"></circle><text dy="1.5em">order not assigned</text></g><g class="node" transform="translate(500.6614521514118, 93.23152603206965)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Adenoviridae</text></g><g class="node" transform="translate(407.72389128366984, 100.07012100018424)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Alphatetraviridae</text></g><g class="node" transform="translate(481.1945193095139, 299.27965513264417)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Alvernaviridae</text></g><g class="node" transform="translate(337.3868340914867, 143.4547440804287)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Ampullaviridae</text></g><g class="node" transform="translate(557.3121947207367, 110.79000767578853)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Anelloviridae</text></g><g class="node" transform="translate(364.4975046826509, 261.5532821380727)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Ascoviridae</text></g><g class="node" transform="translate(358.67278662608436, 164.5304296962167)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Asfarviridae</text></g><g class="node" transform="translate(332.9889234631637, 197.19393999344103)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Astroviridae</text></g><g class="node" transform="translate(384.48811106066574, 213.32111715985118)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Baculoviridae</text></g><g class="node" transform="translate(569.2501138226947, 156.53475193947045)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Barnaviridae</text></g><g class="node" transform="translate(495.27409998518715, 67.6433165520234)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Bicaudaviridae</text></g><g class="node" transform="translate(569.8872093818907, 202.6944937550581)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Bidnaviridae</text></g><g class="node" transform="translate(538.6418894837003, 256.43991970984126)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Birnaviridae</text></g><g class="node" transform="translate(401.07335290134654, 71.18004402290902)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Bromoviridae</text></g><g class="node" transform="translate(564.5684038376502, 224.97514717418105)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Caliciviridae</text></g><g class="node" transform="translate(543.6753797386991, 203.99716476524694)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Carmotetraviridae</text></g><g class="node" transform="translate(555.9883482002778, 244.48473513538895)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Caulimoviridae</text></g><g class="node" transform="translate(402.16249936887675, 237.56085502793854)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Chrysoviridae</text></g><g class="node" transform="translate(475.50719021414733, 81.29787310153559)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Circoviridae</text></g><g class="node" transform="translate(362.7599684131486, 109.8841185940252)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Clavaviridae</text></g><g class="node" transform="translate(433.3942494021109, 252.06270849072396)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Closteroviridae</text></g><g class="node" transform="translate(380.0272421041927, 123.44653572091113)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Corticoviridae</text></g><g class="node" transform="translate(342.8868026281789, 120.3935338283044)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Cystoviridae</text></g><g class="node" transform="translate(482.5497316931333, 276.4329597265241)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Endornaviridae</text></g><g class="node" transform="translate(373.96789973434454, 77.63308337670212)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Flaviviridae</text></g><g class="node" transform="translate(364.03490341490544, 222.87296704645206)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Fuselloviridae</text></g><g class="node" transform="translate(465.2434233031394, 54.57454847938645)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Geminiviridae</text></g><g class="node" transform="translate(425.60775975794905, 84.49616446405614)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Globuloviridae</text></g><g class="node" transform="translate(510.6474628052383, 266.34526877045266)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Guttaviridae</text></g><g class="node" transform="translate(485.7466742141065, 46.390473748633354)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Hepadnaviridae</text></g><g class="node" transform="translate(525.3106229111345, 106.53704581382311)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Hepeviridae</text></g><g class="node" transform="translate(542.6192138930335, 150.805425951328)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Hypoviridae</text></g><g class="node" transform="translate(529.7040150188814, 276.3775373797247)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Hytrosaviridae</text></g><g class="node" transform="translate(464.4774910339364, 259.664948886917)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Inoviridae</text></g><g class="node" transform="translate(372.7697384189327, 184.2185791824277)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Iridoviridae</text></g><g class="node" transform="translate(409.0447280147488, 286.54995513755455)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Leviviridae</text></g><g class="node" transform="translate(538.7053211114923, 126.20134578422737)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Luteoviridae</text></g><g class="node" transform="translate(385.0111199982822, 96.16089702202747)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Megabirnaviridae</text></g><g class="node" transform="translate(491.34816902274736, 251.9234040481327)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Metaviridae</text></g><g class="node" transform="translate(376.7303185443237, 291.9516946246819)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Microviridae</text></g><g class="node" transform="translate(311.14865535278284, 382.77933801438894)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Gokushovirinae</text></g><g class="node" transform="translate(389.4468549035562, 267.8663647191155)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Mimiviridae</text></g><g class="node" transform="translate(355.6532818552169, 199.6926868534344)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Nanoviridae</text></g><g class="node" transform="translate(573.0542554593843, 179.78981007014343)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Narnaviridae</text></g><g class="node" transform="translate(505.1308285223913, 290.57970075841564)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Nimaviridae</text></g><g class="node" transform="translate(337.87977838075426, 221.39546704461907)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Nodaviridae</text></g><g class="node" transform="translate(431.4948807782625, 292.10864675003404)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Ophioviridae</text></g><g class="node" transform="translate(535.1054478408521, 226.5294235317508)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Orthomyxoviridae</text></g><g class="node" transform="translate(418.14427956644306, 52.75791636407759)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Papillomaviridae</text></g><g class="node" transform="translate(364.0144339824933, 144.14225742902252)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Partitiviridae</text></g><g class="node" transform="translate(388.2107780712775, 43.447625608359424)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Parvoviridae</text></g><g class="node" transform="translate(356.32361195572514, -59.634194235793224)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Densovirinae</text></g><g class="node" transform="translate(319.78635769343566, -39.496488093897874)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Parvovirinae</text></g><g class="node" transform="translate(338.9328503388912, 173.5795008200958)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Permutotetraviridae</text></g><g class="node" transform="translate(525.7182473718178, 80.32542635064414)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Phycodnaviridae</text></g><g class="node" transform="translate(566.4241574750763, 133.27176349231067)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Picobirnaviridae</text></g><g class="node" transform="translate(516.3064716165103, 60.149114129311194)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Plasmaviridae</text></g><g class="node" transform="translate(438.1173458759718, 62.26974660903013)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Polydnaviridae</text></g><g class="node" transform="translate(412.81481308821003, 262.3468339878604)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Polyomaviridae</text></g><g class="node" transform="translate(349.51378173433386, 243.48604761209438)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Potyviridae</text></g><g class="node" transform="translate(345.6725112485975, 91.25787186781722)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Poxviridae</text></g><g class="node" transform="translate(402.7701299894316, 146.8685762370537)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Chordopoxvirinae</text></g><g class="node" transform="translate(256.49277684005796, 30.11929972436966)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Entomopoxvirinae</text></g><g class="node" transform="translate(547.7658583580459, 88.48455788347299)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Pseudoviridae</text></g><g class="node" transform="translate(451.7679795074091, 82.43535072290375)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Quadriviridae</text></g><g class="node" transform="translate(437.71540052181007, 318.85279169598226)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Reoviridae</text></g><g class="node" transform="translate(437.32210056041333, 428.26477874371653)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Sedoreovirinae</text></g><g class="node" transform="translate(397.9345819455516, 421.62988574346866)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Spinareovirinae</text></g><g class="node" transform="translate(312.90144662773935, 165.93280255294772)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Retroviridae</text></g><g class="node" transform="translate(208.6554186836085, 190.27091302121977)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Orthoretrovirinae</text></g><g class="node" transform="translate(208.66644384921676, 143.40022367403571)"><circle r="6" style="fill: rgb(65, 182, 196);"></circle><text dy="1.5em">Spumaretrovirinae</text></g><g class="node" transform="translate(515.4528570341137, 240.42532334276325)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Tectiviridae</text></g><g class="node" transform="translate(458.85433879011174, 293.3597388541078)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Togaviridae</text></g><g class="node" transform="translate(379.6104946398913, 243.64262560656493)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Tombusviridae</text></g><g class="node" transform="translate(446.9645911821283, 40.9701176640132)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Totiviridae</text></g><g class="node" transform="translate(547.7685695712897, 178.25863426092383)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">family not assigned</text></g><g class="node" transform="translate(443.9515241583131, 273.6193785776255)"><circle r="6" style="fill: rgb(44, 127, 184);"></circle><text dy="1.5em">Virgaviridae</text></g></g></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Analytics -->
+    <script async="" src="./viroscope.info_files/analytics.js"></script><script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50876945-1', 'viroscope.info');
+      ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <script src="./viroscope.info_files/55b10d08.vendor.js"></script>
+
+    <script src="./viroscope.info_files/7d47130d.scripts.js"></script>
+
+</body></html>

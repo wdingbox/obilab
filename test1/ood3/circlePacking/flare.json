@@ -1,0 +1,22 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "bbb",
+     "children": [
+      {"name": "cccc", "size": 3938},
+      {"name": "ccc2", "size": 3812},
+      {"name": "ccc3", "size": 6714}
+     ]
+    },
+    {
+     "name": "bb22",
+     "children": []
+    }
+   ]
+  }
+ ]
+}

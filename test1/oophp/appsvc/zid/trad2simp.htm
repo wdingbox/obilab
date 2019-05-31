@@ -1,0 +1,51 @@
+<html>
+<head>
+   <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script language="javascript" src="zid_simp.js">
+    </script>
+    <script language="javascript" src="zid_trad.js">
+    
+    </script>
+</head>
+
+<body>
+This list get from Jiaguwen DB. 
+It is used for generate a map array for php in order to auto set zid1 with simplified chars.<br><br>
+<script>
+var uniarr=new Array();
+var indx=0;
+for(i in T){
+   var charCode_S = parseInt(S[i].charCodeAt(0));
+   if( 65533 == charCode_S || 30000 == charCode_S || charCode_S <100 || charCode_S > 50000 || 32==charCode_S) {
+      charCode_S = 32;
+   }
+   else{
+      //icount++;
+      uniarr[charCode_S] =  T[i].charCodeAt(0);
+   }
+   document.write(i +": "+T[i] + " " + T[i].charCodeAt(0) + " = &#" + charCode_S + "; " + charCode_S + "<br>");
+}
+document.write("uniarr="+uniarr.length); 
+document.write("<br>"); 
+
+indx=0;
+var srtarr=new Array();
+for(i in uniarr){
+   var trad = uniarr[i];
+   srtarr[indx]=i + " " + trad;//simp trad
+   document.write("T2S[" + trad +"]=\"" + i + "\"; // &#" + trad + "; "  + trad + " ~~ &#" + i + "; "  + i+ "<br>");
+   indx++;
+}
+
+document.write("<br>sorted<br>"); 
+srtarr.sort();
+for(i in srtarr){
+   var cod = srtarr[i];
+   document.write(i +": " + " = &#" + cod + "; "  + cod + "<br>");
+   indx++;
+}
+
+
+</script>
+</body>
+</html>

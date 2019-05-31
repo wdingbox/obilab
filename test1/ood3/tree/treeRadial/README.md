@@ -1,0 +1,5 @@
+The `tree` layout implements the Reingold-Tilford algorithm for efficient, tidy arrangement of layered nodes. The depth of nodes is computed by distance from the root, leading to a ragged appearance. Cartesian orientations are also supported. Implementation based on work by [Jeff Heer](http://jheer.org/) and [Jason Davies](http://www.jasondavies.com/) using [Buchheim et al.](http://www.springerlink.com/content/u73fyc4tlxp3uwt8/)'s linear-time variant of the Reingold-Tilford algorithm. Data shows the [Flare](http://flare.prefuse.org/) class hierarchy, also courtesy Jeff Heer.
+
+This gist features a minor cosmetic amendment to make the links radiate out from the main node in straight lines. This is achieved by adding a source-accessor that overrides the standard behaviour when the node depth is 0.
+
+Compare to this [Mike Bostock's original](/mbostock/4063550).
