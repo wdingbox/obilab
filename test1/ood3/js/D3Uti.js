@@ -495,7 +495,7 @@ ImgFile:function(nod){
      
     var fname="../../../../odb/tbi/img/jgif/"+jid;
     fname="../../../../../___bigdata/___compact/___solid/odb/tbi/img/jgif/"+jid;
-    fname=`../../../../../../bitbucket/obidat/imgtbi/tbi/img/jgif/${jid}`;//obidat
+    fname=`../../../../../../bitbucket/wdingsoft/obidat/imgtbi/tbi/img/jgif/${jid}`;//obidat
     return fname;  
 },
 

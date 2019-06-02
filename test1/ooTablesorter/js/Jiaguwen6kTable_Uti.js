@@ -8,13 +8,13 @@ var JgwUti={
   GenJgwImg:function(id, sComma){
     //  src="../../../../___bigdata/___compact/___solid/odb/tbi/img/jgif/62880.gif"
     var src="../../../../___bigdata/___compact/___solid/odb/tbi/img/jgif/"+id+".gif";
-    var src=`../../../../../bitbucket/obidat/imgtbi/tbi/img/jgif/${id}.gif`;
+    var src=`../../../../../bitbucket/wdingsoft/obidat/imgtbi/tbi/img/jgif/${id}.gif`;
     return `<div class='mi'><a>${id}${sComma}</a><br><img src='${src}'/></div>`;
   },/////////////////////////////////////////////
   GenHieroImg:function(id, sComma){
      //src=../../../../___bigdata/___compact/___solid/odb/hiero/ccer-h/J26.gif
     var src="../../../../___bigdata/___compact/___solid/odb/hiero/ccer-h/"+id+".gif";
-    var src=`../../../../../bitbucket/obidat/imghiero/hiero/jpegHiero/${id}.jpg`;
+    var src=`../../../../../bitbucket/wdingsoft/obidat/imghiero/hiero/jpegHiero/${id}.jpg`;
     return `<div class='mi'><a>${id}${sComma}</a><br><img src='${src}'/></div>`;
   },////////////////////////////////////////////
   Get_Ary_fr_ImgListStr : function (strList){
