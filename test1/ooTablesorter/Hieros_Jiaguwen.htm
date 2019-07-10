@@ -42,9 +42,12 @@
 			right: 10px;
 			z-index: 100;
 		}
+		td{
+			font-size:8px;
+		}
 
 		.h2jmatch {
-			background-colore: red;
+			background-color: red;
 		}
 	</style>
 
@@ -101,7 +104,7 @@
 				CatNameArr[cat] = "";
 			};
 			idx++;
-			var img = `<img src='${hpath}${k}.jpg' width='30'/><br>`
+			var img = `<img src='${hpath}${k}.jpg'/><br>`
 			var cname = "h2jmatch";
 			if (undefined === h2jmatObj[k]) {
 				cname = "";
