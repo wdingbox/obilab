@@ -2280,7 +2280,15 @@ Descrp:"reports that 300,000-year-old fossils of as many as 16 individual human 
 Refdic:{"https://www.archaeology.org/news/7676-190524-china-human-fossils":"300,000-Year-Old Fossils of Discovered in China",
 "":"", }
 },
-
+{Date:"-7500",
+LatLng:"41.956373, 114.305731",
+Locate:"内蒙古,化德县 四麻沟遗址, 白音特拉乡解放村 自然村南1.5公里处",
+Name:"裕民文化",
+Descrp:"共出土器物4000余件，其中大部分为石制品,出土陶器中可复原器形极少，多为陶器残片。主要为夹砂黑褐陶、夹砂黄褐陶和泥质黄褐陶，质地疏松，火候低。纹饰有编织网纹、编织麻点纹、指甲压印纹以及一定数量的素面。制法为泥片贴筑法。器形简单，出土有釜、筒形罐、敞口小底罐、片状器、纺轮、饰件等。",
+Refdic:{"http://kaogu.cssn.cn/zwb/xccz/201909/t20190911_4971099.shtml":"2017年至2019年，由内蒙古自治区文物考古研究所主持，对化德县四麻沟遗址进行了考古发掘工作。主要发掘了遗址的第Ⅲ地点，三年共发掘2200平方米。发掘房址19座，室外灶19座。",
+"":"", }
+},
+ 
 
  
 ];
