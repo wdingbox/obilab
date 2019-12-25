@@ -5,7 +5,7 @@
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta content="en-us" http-equiv="Content-Language" />
 		<title></title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://wdingbox.github.io/ham12/jq/jquery-2_1_3.min.js"></script>
         
         <script src="./flareForceDirectedlabel_sample.json"></script>
        

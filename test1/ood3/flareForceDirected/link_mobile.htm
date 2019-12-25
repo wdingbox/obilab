@@ -7,7 +7,7 @@
 	<META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0"></META>
     <link rel="stylesheet" type="text/css" href="../css/OpMenu.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+<script src="https://wdingbox.github.io/ham12/jq/jquery-2_1_3.min.js"></script> 
     <script src="../js/jquery.contextmenu.js"></script>
     <link rel="stylesheet" href="../css/jquery.contextmenu.css">
     
