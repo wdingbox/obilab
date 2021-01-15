@@ -2319,6 +2319,17 @@ Refdic:{"https://kknews.cc/travel/vr9e9m2.html":"焉不拉克文化遺址,1958�
 
 
 
+{Date:"-2070",
+LatLng:"34.77465008402137, 113.02191934027846",
+Locate:"Shuanghuaishu, the south bank of the Yellow River in the township of Heluo, the city of Gongyi, Henan. ",
+Name:"Palace system discovered in 5,300-year-old ancient capital",
+Descrp:"affected the capital city planning in the following dynasties including the Xia (2070-1600 BC) and Shang (1600-1046 BC).",
+Refdic:{"Palace system discovered in 5,300-year-old ancient capital":"https://www.shine.cn/news/nation/2101133184/",
+"":"", }
+},
+ 
+ 
+
 
 
 
